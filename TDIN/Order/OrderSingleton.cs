@@ -5,6 +5,7 @@ using System.Threading;
 public class OrderSingleton : MarshalByRefObject, OrderInterface
 {
     ArrayList orderList;
+    ArrayList tableList;
     public event AlterDelegate alterEvent;
     uint id = 2;
 
@@ -12,9 +13,16 @@ public class OrderSingleton : MarshalByRefObject, OrderInterface
     {
         Console.WriteLine("Constructor called.");
         orderList = new ArrayList();
-        Order order = new Order(1, "Massa à bolonhesa");
-        Console.WriteLine("Default rrder created");
+        tableList = new ArrayList();
+        Order order = new Order(1, "Massa à bolonhesa", 2, 1, Local.Bar, 10);
+        Console.WriteLine("Default order created");
         orderList.Add(order);
+
+        for (uint i = 0; i < 10; i++)
+        {
+            Table table = new Table(i);
+            tableList.Add(table);
+        }
     }
 
     public override object InitializeLifetimeService()
@@ -22,10 +30,16 @@ public class OrderSingleton : MarshalByRefObject, OrderInterface
         return null;
     }
 
-    public ArrayList GetList()
+    public ArrayList GetListOfOrders()
     {
-        Console.WriteLine("GetList() called.");
+        Console.WriteLine("GetListOfOrders() called.");
         return orderList;
+    }
+
+    public ArrayList GetListOfTables()
+    {
+        Console.WriteLine("GetListOfTables() called.");
+        return tableList;
     }
 
     public uint GetNewID()
@@ -54,7 +68,8 @@ public class OrderSingleton : MarshalByRefObject, OrderInterface
                 break;
             }
         }
-        NotifyClients(Operation.Change, order);
+        if (order.State == OrderState.Pronto)
+            NotifyClients(Operation.Change, order);
         return true;
     }
 

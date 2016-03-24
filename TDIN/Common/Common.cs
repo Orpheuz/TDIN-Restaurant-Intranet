@@ -2,7 +2,46 @@
 using System.Collections;
 
 [Serializable]
-public class Order {
+public class Table
+{
+    #region GetsSets
+    private uint id;
+    public uint Id
+    {
+        get
+        {
+            return this.id;
+        }
+        set
+        {
+            this.id = value;
+        }
+    }
+
+    private bool availability;
+    public bool Availability
+    {
+        get
+        {
+            return this.availability;
+        }
+        set
+        {
+            this.availability = value;
+        }
+    }
+    #endregion
+
+    public Table(uint id)
+    {
+        this.id = id;
+        this.availability = true;
+    }
+}
+
+[Serializable]
+public class Order
+{
     #region GetsSets
     private uint id;
     public uint Id
@@ -96,7 +135,7 @@ public class Order {
     }
     #endregion
 
-    public Order() : this(0, OrderState.NaoAtendido, "", 0, 0, Local.Kitchen, 0)
+    public Order() : this(0, "", 0, 0, Local.Kitchen, 0)
     {
 
     }
@@ -109,11 +148,11 @@ public class Order {
         this.state = OrderState.NaoAtendido;
     }
 
-    public Order(uint id, OrderState state, String description, uint quantity, uint tableId, Local local, uint price)
+    public Order(uint id, String description, uint quantity, uint tableId, Local local, uint price)
     {
         this.id = id;
         this.price = price;
-        this.state = state;
+        this.state = OrderState.NaoAtendido;
         this.description = description;
         this.quantity = quantity;
         this.tableId = tableId;
@@ -150,24 +189,29 @@ public enum Operation { New, Change };
 
 public delegate void AlterDelegate(Operation op, Order item);
 
-public interface OrderInterface {
-  event AlterDelegate alterEvent;
+public interface OrderInterface
+{
+    event AlterDelegate alterEvent;
 
-  ArrayList GetList();
-  uint GetNewID();
-  void AddItem(Order item);
-  bool ChangeState(uint id);
+    ArrayList GetListOfTables();
+    ArrayList GetListOfOrders();
+    uint GetNewID();
+    void AddItem(Order item);
+    bool ChangeState(uint id);
 }
 
-public class AlterEventRepeater : MarshalByRefObject {
-  public event AlterDelegate alterEvent;
+public class AlterEventRepeater : MarshalByRefObject
+{
+    public event AlterDelegate alterEvent;
 
-  public override object InitializeLifetimeService() {
-    return null;
-  }
+    public override object InitializeLifetimeService()
+    {
+        return null;
+    }
 
-  public void Repeater(Operation op, Order item) {
-    if (alterEvent != null)
-      alterEvent(op, item);
-  }
+    public void Repeater(Operation op, Order item)
+    {
+        if (alterEvent != null)
+            alterEvent(op, item);
+    }
 }

@@ -5,22 +5,26 @@ using System.Collections;
 using System.Runtime.Remoting;
 using System.Windows.Forms;
 
-namespace Client
+namespace KitchenBar
 {
     public partial class CliWindow : MetroForm
     {
+        bool local;
         OrderInterface listServer;
         AlterEventRepeater evRepeater;
         ArrayList orders;
+        ArrayList tables;
         delegate ListViewItem LVAddDelegate(ListViewItem lvItem);
         delegate void ChCommDelegate(Order order);
 
-        public CliWindow()
+        public CliWindow(bool local)
         {
-            RemotingConfiguration.Configure("Room.exe.config", false);
+            this.local = local;
+            RemotingConfiguration.Configure("KitchenBar.exe.config", false);
             InitializeComponent();
             listServer = (OrderInterface)RemoteNew.New(typeof(OrderInterface));
-            orders = listServer.GetList();
+            orders = listServer.GetListOfOrders();
+            tables = listServer.GetListOfTables();
             evRepeater = new AlterEventRepeater();
             evRepeater.alterEvent += new AlterDelegate(DoAlterations);
             listServer.alterEvent += new AlterDelegate(evRepeater.Repeater);
@@ -39,9 +43,18 @@ namespace Client
             switch (op)
             {
                 case Operation.New:
-                    lvAdd = new LVAddDelegate(itemListView.Items.Add);
-                    ListViewItem lvItem = new ListViewItem(new string[] { order.Id.ToString(), order.Description, order.getStateString() });
-                    BeginInvoke(lvAdd, new object[] { lvItem });
+                    if (order.Local == Local.Kitchen && this.local == true)
+                    {
+                        lvAdd = new LVAddDelegate(itemListView.Items.Add);
+                        ListViewItem lvItem = new ListViewItem(new string[] { order.Id.ToString(), order.Description, order.getStateString(), order.TableId.ToString(), order.Quantity.ToString(), order.Price.ToString() });
+                        BeginInvoke(lvAdd, new object[] { lvItem });
+                    }
+                    if (order.Local == Local.Bar && this.local == false)
+                    {
+                        lvAdd = new LVAddDelegate(itemListView.Items.Add);
+                        ListViewItem lvItem = new ListViewItem(new string[] { order.Id.ToString(), order.Description, order.getStateString(), order.TableId.ToString(), order.Quantity.ToString(), order.Price.ToString() });
+                        BeginInvoke(lvAdd, new object[] { lvItem });
+                    }
                     break;
                 case Operation.Change:
                     chComm = new ChCommDelegate(ChangeState);
@@ -67,7 +80,7 @@ namespace Client
         {
             foreach (Order ord in orders)
             {
-                ListViewItem lvItem = new ListViewItem(new string[] { ord.Id.ToString(), ord.Description, ord.getStateString() });
+                ListViewItem lvItem = new ListViewItem(new string[] { ord.Id.ToString(), ord.Description, ord.getStateString(), ord.TableId.ToString(), ord.Quantity.ToString(), ord.Price.ToString() });
                 itemListView.Items.Add(lvItem);
             }
         }
@@ -76,18 +89,6 @@ namespace Client
         {
             listServer.alterEvent -= new AlterDelegate(evRepeater.Repeater);
             evRepeater.alterEvent -= new AlterDelegate(DoAlterations);
-        }
-
-        private void metroButton1_Click(object sender, EventArgs e)
-        {
-            if (metroTextBox1.Text == "")
-            {
-                MetroMessageBox.Show(this, "Need to fill the description!", "Insuficient values", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            Order ord = new Order(listServer.GetNewID(), metroTextBox1.Text);
-            listServer.AddItem(ord);
-            metroTextBox1.Text = "";
         }
 
         private void itemListView_SelectedIndexChanged(object sender, EventArgs e)
