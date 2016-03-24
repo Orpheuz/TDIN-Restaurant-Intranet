@@ -50,6 +50,13 @@ public class OrderSingleton : MarshalByRefObject, OrderInterface
     public void AddItem(Order order)
     {
         orderList.Add(order);
+        foreach(Table tab in tableList)
+        {
+            if(tab.Id == order.TableId)
+            {
+                tab.Availability = false;
+            }
+        }
         NotifyClients(Operation.New, order);
     }
 
@@ -68,8 +75,7 @@ public class OrderSingleton : MarshalByRefObject, OrderInterface
                 break;
             }
         }
-        if (order.State == OrderState.Pronto)
-            NotifyClients(Operation.Change, order);
+        NotifyClients(Operation.Change, order);
         return true;
     }
 

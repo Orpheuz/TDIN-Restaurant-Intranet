@@ -1,7 +1,9 @@
-﻿using MetroFramework.Forms;
+﻿using MetroFramework;
+using MetroFramework.Forms;
 using System;
 using System.Collections;
 using System.Runtime.Remoting;
+using System.Windows.Forms;
 
 namespace Room
 {
@@ -12,19 +14,12 @@ namespace Room
         AlterEventRepeater evRepeater;
         ArrayList descriptions;
         ArrayList tableIDs;
-        ArrayList orders;
         ArrayList tables;
 
-        public AddOrder(bool remotingInitialized)
+        public AddOrder()
         {
-            if (!remotingInitialized)
-            {
-                RemotingConfiguration.Configure("Room.exe.config", false);
-                remotingInitialized = true;
-            }
             InitializeComponent();
             listServer = (OrderInterface)RemoteNew.New(typeof(OrderInterface));
-            orders = listServer.GetListOfOrders();
             tables = listServer.GetListOfTables();
 
             evRepeater = new AlterEventRepeater();
@@ -46,37 +41,31 @@ namespace Room
 
         private void metroButton1_Click(object sender, EventArgs e)
         {
+            tables = listServer.GetListOfTables();
             Local localValue;
             if (metroRadioButton1.Checked)
                 localValue = Local.Kitchen;
             else localValue = Local.Bar;
+            if(!(isTableAvailable((uint) metroComboBox2.SelectedValue)))
+            {
+                MetroMessageBox.Show(this, "Chose other table", "Table is unavailable", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             Order ord = new Order(listServer.GetNewID(), metroComboBox1.SelectedValue.ToString(), (uint)numericUpDown1.Value, (uint)metroComboBox2.SelectedValue, localValue, (uint)numericUpDown2.Value);
             listServer.AddItem(ord);
         }
-    }
 
-    class RemoteNew
-    {
-        private static Hashtable types = null;
-
-        private static void InitTypeTable()
+        private bool isTableAvailable(uint id)
         {
-            types = new Hashtable();
-            foreach (WellKnownClientTypeEntry entry in RemotingConfiguration.GetRegisteredWellKnownClientTypes())
-                types.Add(entry.ObjectType, entry);
-        }
-
-        public static object New(Type type)
-        {
-            if (types == null)
-                InitTypeTable();
-            WellKnownClientTypeEntry entry = (WellKnownClientTypeEntry)types[type];
-            if (entry == null)
-                throw new RemotingException("Type not found!");
-            return RemotingServices.Connect(type, entry.ObjectUrl);
+           foreach(Table tab in tables)
+            {
+                if (tab.Id == id)
+                {
+                    return tab.Availability;
+                }
+            }
+            return false;
         }
     }
-
-
 }
 

@@ -209,9 +209,9 @@ public class AlterEventRepeater : MarshalByRefObject
         return null;
     }
 
-    public void Repeater(Operation op, Order item)
+    public void Repeater(Operation op, Order order)
     {
         if (alterEvent != null)
-            alterEvent(op, item);
+            alterEvent(op, order);
     }
 }
