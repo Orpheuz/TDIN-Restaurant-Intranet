@@ -65,28 +65,19 @@
     <Compile Include="ChoseLocal.Designer.cs">
       <DependentUpon>ChoseLocal.cs</DependentUpon>
     </Compile>
-    <Compile Include="NotMetOrders.cs">
+    <Compile Include="KitchenBar.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="NotMetOrders.Designer.cs">
-      <DependentUpon>NotMetOrders.cs</DependentUpon>
-    </Compile>
-    <Compile Include="OrderRequests.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="OrderRequests.Designer.cs">
-      <DependentUpon>OrderRequests.cs</DependentUpon>
+    <Compile Include="KitchenBar.Designer.cs">
+      <DependentUpon>KitchenBar.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="ChoseLocal.resx">
       <DependentUpon>ChoseLocal.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="NotMetOrders.resx">
-      <DependentUpon>NotMetOrders.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="OrderRequests.resx">
-      <DependentUpon>OrderRequests.cs</DependentUpon>
+    <EmbeddedResource Include="KitchenBar.resx">
+      <DependentUpon>KitchenBar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

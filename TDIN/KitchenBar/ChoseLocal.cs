@@ -13,7 +13,7 @@ namespace KitchenBar
 
         private void metroTile1_Click(object sender, System.EventArgs e)
         {
-            form = new NotMetOrders(true);
+            form = new KitchenBar(true);
             form.FormClosed += new FormClosedEventHandler(form_FormClosed);
             this.Hide();
             form.Show();
@@ -21,7 +21,7 @@ namespace KitchenBar
 
         private void metroTile2_Click(object sender, System.EventArgs e)
         {
-            form = new NotMetOrders(false);
+            form = new KitchenBar(false);
             form.FormClosed += new FormClosedEventHandler(form_FormClosed);
             this.Hide();
             form.Show();
