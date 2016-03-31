@@ -7,17 +7,14 @@ public class OrderSingleton : MarshalByRefObject, OrderInterface
     ArrayList orderList;
     ArrayList tableList;
     public event AlterDelegate alterEvent;
-    uint id = 2;
+    uint id = 1;
+    uint serviceID = 1;
 
     public OrderSingleton()
     {
         Console.WriteLine("Constructor called.");
         orderList = new ArrayList();
         tableList = new ArrayList();
-        Order order = new Order(1, "Massa à bolonhesa", 2, 1, Local.Bar, 10);
-        Console.WriteLine("Default order created");
-        orderList.Add(order);
-
         for (uint i = 0; i < 10; i++)
         {
             Table table = new Table(i);
@@ -47,7 +44,12 @@ public class OrderSingleton : MarshalByRefObject, OrderInterface
         return id++;
     }
 
-    public void AddItem(Order order)
+    public uint GetNewServiceID()
+    {
+        return serviceID++;
+    }
+
+    public void AddOrder(Order order)
     {
         orderList.Add(order);
         foreach(Table tab in tableList)
@@ -60,7 +62,7 @@ public class OrderSingleton : MarshalByRefObject, OrderInterface
         NotifyClients(Operation.New, order);
     }
 
-    public bool ChangeState(uint id)
+    public bool ChangeState(bool fromRoom, uint id)
     {
         Order order = null;
 
@@ -68,14 +70,48 @@ public class OrderSingleton : MarshalByRefObject, OrderInterface
         {
             if (ord.Id == id)
             {
-                if (ord.State != OrderState.Pronto)
-                    ord.State++;
-                else return false;
+                if (fromRoom)
+                {
+                    if (ord.State == OrderState.Delivered)
+                    {
+                        return false;
+                    }
+                    else if (ord.State == OrderState.Ready)
+                    {
+                        ord.State++;
+                    }
+                    else return false;
+                }
+                else
+                {
+                    if (ord.State != OrderState.Ready && ord.State != OrderState.Delivered)
+                        ord.State++;
+                    else return false;
+                }
                 order = ord;
                 break;
             }
         }
         NotifyClients(Operation.Change, order);
+        return true;
+    }
+
+    public bool TakeOrder(uint orderID, uint serviceID)
+    {
+        Order order = null;
+
+        foreach (Order ord in orderList)
+        {
+            if (ord.Id == orderID)
+            {
+                if (ord.OrderTaker != 0)
+                    return false;
+                ord.OrderTaker = serviceID;
+                order = ord;
+                break;
+            }
+        }
+        NotifyClients(Operation.Taken, order);
         return true;
     }
 

@@ -56,6 +56,19 @@ public class Order
         }
     }
 
+    private uint orderTaker;
+    public uint OrderTaker
+    {
+        get
+        {
+            return this.orderTaker;
+        }
+        set
+        {
+            this.orderTaker = value;
+        }
+    }
+
     private OrderState state;
     public OrderState State
     {
@@ -145,19 +158,20 @@ public class Order
     {
         this.id = id;
         this.description = description;
-        this.state = OrderState.NaoAtendido;
+        this.state = OrderState.NotMet;
     }
 
     public Order(uint id, String description, uint quantity, uint tableId, Local local, uint price)
     {
         this.id = id;
         this.price = price;
-        this.state = OrderState.NaoAtendido;
+        this.state = OrderState.NotMet;
         this.description = description;
         this.quantity = quantity;
         this.tableId = tableId;
         this.local = local;
         this.price = price;
+        this.orderTaker = 0;
     }
 
     public String getStateString()
@@ -165,14 +179,17 @@ public class Order
         string orderStateS = null;
         switch (this.State)
         {
-            case OrderState.NaoAtendido:
+            case OrderState.NotMet:
                 orderStateS = "Request not met";
                 break;
-            case OrderState.EmPreparacao:
+            case OrderState.InPreparation:
                 orderStateS = "In preparation";
                 break;
-            case OrderState.Pronto:
+            case OrderState.Ready:
                 orderStateS = "Ready";
+                break;
+            case OrderState.Delivered:
+                orderStateS = "Delivered";
                 break;
         }
 
@@ -183,9 +200,9 @@ public class Order
 
 public enum Local { Bar, Kitchen };
 
-public enum OrderState { NaoAtendido, EmPreparacao, Pronto }
+public enum OrderState { NotMet, InPreparation, Ready, Delivered }
 
-public enum Operation { New, Change };
+public enum Operation { New, Change, Taken };
 
 public delegate void AlterDelegate(Operation op, Order item);
 
@@ -196,8 +213,10 @@ public interface OrderInterface
     ArrayList GetListOfTables();
     ArrayList GetListOfOrders();
     uint GetNewID();
-    void AddItem(Order item);
-    bool ChangeState(uint id);
+    uint GetNewServiceID();
+    void AddOrder(Order item);
+    bool ChangeState(bool fromRoom, uint id);
+    bool TakeOrder(uint orderID, uint serviceID);
 }
 
 public class AlterEventRepeater : MarshalByRefObject

@@ -1,6 +1,6 @@
-﻿namespace KitchenBar
+﻿namespace Room
 {
-    partial class CliWindow
+    partial class ReadyOrder
     {
         /// <summary>
         /// Required designer variable.
@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.metroButton1 = new MetroFramework.Controls.MetroButton();
             this.itemListView = new System.Windows.Forms.ListView();
             this.ID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Description = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -35,8 +36,19 @@
             this.Table = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Quantity = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Price = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.metroButton2 = new MetroFramework.Controls.MetroButton();
             this.SuspendLayout();
+            // 
+            // metroButton1
+            // 
+            this.metroButton1.FontSize = MetroFramework.MetroButtonSize.Medium;
+            this.metroButton1.Highlight = true;
+            this.metroButton1.Location = new System.Drawing.Point(558, 370);
+            this.metroButton1.Name = "metroButton1";
+            this.metroButton1.Size = new System.Drawing.Size(170, 42);
+            this.metroButton1.TabIndex = 4;
+            this.metroButton1.Text = "Deliver";
+            this.metroButton1.UseSelectable = true;
+            this.metroButton1.Click += new System.EventHandler(this.metroButton1_Click);
             // 
             // itemListView
             // 
@@ -50,14 +62,13 @@
             this.itemListView.FullRowSelect = true;
             this.itemListView.GridLines = true;
             this.itemListView.HideSelection = false;
-            this.itemListView.Location = new System.Drawing.Point(71, 81);
+            this.itemListView.Location = new System.Drawing.Point(75, 78);
             this.itemListView.MultiSelect = false;
             this.itemListView.Name = "itemListView";
             this.itemListView.Size = new System.Drawing.Size(653, 265);
-            this.itemListView.TabIndex = 3;
+            this.itemListView.TabIndex = 5;
             this.itemListView.UseCompatibleStateImageBehavior = false;
             this.itemListView.View = System.Windows.Forms.View.Details;
-            this.itemListView.SelectedIndexChanged += new System.EventHandler(this.itemListView_SelectedIndexChanged);
             // 
             // ID
             // 
@@ -88,34 +99,21 @@
             this.Price.Text = "Price";
             this.Price.Width = 62;
             // 
-            // metroButton2
-            // 
-            this.metroButton2.FontSize = MetroFramework.MetroButtonSize.Medium;
-            this.metroButton2.Highlight = true;
-            this.metroButton2.Location = new System.Drawing.Point(561, 367);
-            this.metroButton2.Name = "metroButton2";
-            this.metroButton2.Size = new System.Drawing.Size(163, 42);
-            this.metroButton2.TabIndex = 4;
-            this.metroButton2.Text = "Change State";
-            this.metroButton2.UseSelectable = true;
-            this.metroButton2.Click += new System.EventHandler(this.metroButton2_Click);
-            // 
-            // CliWindow
+            // ReadyOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(813, 445);
-            this.Controls.Add(this.metroButton2);
+            this.ClientSize = new System.Drawing.Size(808, 444);
             this.Controls.Add(this.itemListView);
-            this.Name = "CliWindow";
-            this.Text = "KitchenBar";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CliWindow_FormClosed);
-            this.Load += new System.EventHandler(this.CliWindow_Load);
+            this.Controls.Add(this.metroButton1);
+            this.Name = "ReadyOrder";
+            this.Text = "Ready Orders";
             this.ResumeLayout(false);
-
+            this.Load += new System.EventHandler(this.ReadyOrder_Load);
         }
 
         #endregion
+        public MetroFramework.Controls.MetroButton metroButton1;
         private System.Windows.Forms.ListView itemListView;
         private System.Windows.Forms.ColumnHeader ID;
         private System.Windows.Forms.ColumnHeader Description;
@@ -123,6 +121,5 @@
         private System.Windows.Forms.ColumnHeader Table;
         private System.Windows.Forms.ColumnHeader Quantity;
         private System.Windows.Forms.ColumnHeader Price;
-        private MetroFramework.Controls.MetroButton metroButton2;
     }
 }

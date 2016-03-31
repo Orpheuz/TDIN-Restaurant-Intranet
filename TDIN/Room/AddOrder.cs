@@ -11,7 +11,6 @@ namespace Room
     public partial class AddOrder : MetroForm
     {
         OrderInterface listServer;
-        AlterEventRepeater evRepeater;
         ArrayList descriptions;
         ArrayList tableIDs;
         ArrayList tables;
@@ -21,9 +20,6 @@ namespace Room
             InitializeComponent();
             listServer = (OrderInterface)RemoteNew.New(typeof(OrderInterface));
             tables = listServer.GetListOfTables();
-
-            evRepeater = new AlterEventRepeater();
-            listServer.alterEvent += new AlterDelegate(evRepeater.Repeater);
 
             descriptions = new ArrayList();
             descriptions.Add("Massa à bolonhesa");
@@ -52,7 +48,7 @@ namespace Room
                 return;
             }
             Order ord = new Order(listServer.GetNewID(), metroComboBox1.SelectedValue.ToString(), (uint)numericUpDown1.Value, (uint)metroComboBox2.SelectedValue, localValue, (uint)numericUpDown2.Value);
-            listServer.AddItem(ord);
+            listServer.AddOrder(ord);
         }
 
         private bool isTableAvailable(uint id)

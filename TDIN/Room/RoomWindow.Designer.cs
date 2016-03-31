@@ -84,8 +84,9 @@
             this.metroButton2.Name = "metroButton2";
             this.metroButton2.Size = new System.Drawing.Size(171, 54);
             this.metroButton2.TabIndex = 5;
-            this.metroButton2.Text = "Check order\'s";
+            this.metroButton2.Text = "Check ready orders";
             this.metroButton2.UseSelectable = true;
+            this.metroButton2.Click += new System.EventHandler(this.metroButton2_Click);
             // 
             // RoomWindow
             // 

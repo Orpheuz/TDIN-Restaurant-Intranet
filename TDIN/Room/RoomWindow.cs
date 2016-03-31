@@ -17,6 +17,7 @@ namespace Room
     {
         OrderInterface listServer;
         MetroForm addOrderForm;
+        MetroForm CheckOrdersForm;
         AlterEventRepeater evRepeater;
         delegate void notificationDlg(Order order);
 
@@ -38,7 +39,7 @@ namespace Room
             switch (op)
             {
                 case Operation.Change:
-                    if (order.State == OrderState.Pronto)
+                    if (order.State == OrderState.Ready)
                     {
                         ntfDlg = new notificationDlg(orderNotification);
                         BeginInvoke(ntfDlg, new object[] { order });
@@ -75,6 +76,11 @@ namespace Room
             addOrderForm.Show();
         }
 
+        private void metroButton2_Click(object sender, EventArgs e)
+        {
+            CheckOrdersForm = new ReadyOrder();
+            CheckOrdersForm.Show();
+        }
     }
 
     class RemoteNew

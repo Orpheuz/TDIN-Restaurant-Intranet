@@ -76,6 +76,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ReadyOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReadyOrder.Designer.cs">
+      <DependentUpon>ReadyOrder.cs</DependentUpon>
+    </Compile>
     <Compile Include="AddOrder.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,6 +96,9 @@
     <Compile Include="RoomWindow.Designer.cs">
       <DependentUpon>RoomWindow.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ReadyOrder.resx">
+      <DependentUpon>ReadyOrder.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AddOrder.resx">
       <DependentUpon>AddOrder.cs</DependentUpon>
     </EmbeddedResource>
