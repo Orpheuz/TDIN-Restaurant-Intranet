@@ -76,18 +76,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ReadyOrder.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ReadyOrder.Designer.cs">
-      <DependentUpon>ReadyOrder.cs</DependentUpon>
-    </Compile>
-    <Compile Include="AddOrder.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AddOrder.Designer.cs">
-      <DependentUpon>AddOrder.cs</DependentUpon>
-    </Compile>
     <Compile Include="MainClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoomWindow.cs">
@@ -96,12 +84,6 @@
     <Compile Include="RoomWindow.Designer.cs">
       <DependentUpon>RoomWindow.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="ReadyOrder.resx">
-      <DependentUpon>ReadyOrder.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AddOrder.resx">
-      <DependentUpon>AddOrder.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
