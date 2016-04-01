@@ -6,5 +6,6 @@ class Program {
     RemotingConfiguration.Configure("Register.exe.config", false);
     Console.WriteLine("Press Return to terminate.");
     Console.ReadLine();
+    
   }
 }

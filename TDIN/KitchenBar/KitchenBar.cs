@@ -115,7 +115,7 @@ namespace KitchenBar
         {
             foreach (Order ord in orders)
             {
-                if (ord.OrderTaker != 0)
+                if (ord.OrderTaker == 0)
                 {
                     ListViewItem lvItem = new ListViewItem(new string[] { ord.Id.ToString(), ord.Description, ord.getStateString(), ord.TableId.ToString(), ord.Quantity.ToString(), ord.Price.ToString() });
                     itemListView.Items.Add(lvItem);

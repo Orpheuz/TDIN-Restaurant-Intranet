@@ -23,6 +23,7 @@ namespace Room
         ArrayList orders;
         AlterEventRepeater evRepeater;
         delegate void notificationDlg(Order order);
+        delegate void deliveredOrderDelg(Order order);
         delegate ListViewItem LVAddDelegate(ListViewItem lvItem);
 
         public RoomWindow()
@@ -55,6 +56,7 @@ namespace Room
         {
             LVAddDelegate lvAdd;
             notificationDlg ntfDlg;
+            deliveredOrderDelg delOrdDlg;
 
             switch (op)
             {
@@ -69,30 +71,30 @@ namespace Room
                         BeginInvoke(ntfDlg, new object[] { order });
                         BeginInvoke(lvAdd, new object[] { lvItem });
                     }
+                    if(order.State == OrderState.Delivered)
+                    {
+                        delOrdDlg = new deliveredOrderDelg(DeliveredOrderDlg);
+                        BeginInvoke(delOrdDlg, new object[] { order });
+                    }
                     break;
+            }
+        }
+
+        private void DeliveredOrderDlg(Order order)
+        {
+            foreach (ListViewItem item in itemListView.Items)
+            {
+                if (item.SubItems[0].Text == order.Id.ToString())
+                {
+                    itemListView.Items.Remove(item);
+                    break;
+                }
             }
         }
 
         private void orderNotification(Order order)
         {
-            timer1.Start();
-            notificationsTile.Text = "Order number " + order.Id + " is ready!";
-        }
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            if (notificationsTile.Style == MetroFramework.MetroColorStyle.Blue)
-                notificationsTile.Style = MetroFramework.MetroColorStyle.Silver;
-            else notificationsTile.Style = MetroFramework.MetroColorStyle.Blue;
-
-            notificationsTile.Refresh();
-        }
-
-        private void notificationsTile_Click(object sender, EventArgs e)
-        {
-            timer1.Stop();
-            notificationsTile.Style = MetroFramework.MetroColorStyle.Blue;
-            notificationsTile.Text = "No order ready";
+            MetroForm not = new Popup(order.Id.ToString());
         }
 
         private void addOrderButton_Click(object sender, EventArgs e)
@@ -144,10 +146,6 @@ namespace Room
                 {
                     MetroMessageBox.Show(this, "Couldn't change state", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
-                }
-                else
-                {
-                    itemListView.SelectedItems[0].Remove();
                 }
             }
             else
