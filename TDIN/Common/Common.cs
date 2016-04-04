@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 
 [Serializable]
 public class Table
@@ -53,19 +54,6 @@ public class Order
         set
         {
             this.id = value;
-        }
-    }
-
-    private uint orderTaker;
-    public uint OrderTaker
-    {
-        get
-        {
-            return this.orderTaker;
-        }
-        set
-        {
-            this.orderTaker = value;
         }
     }
 
@@ -171,7 +159,6 @@ public class Order
         this.tableId = tableId;
         this.local = local;
         this.price = price;
-        this.orderTaker = 0;
     }
 
     public String getStateString()
@@ -202,7 +189,7 @@ public enum Local { Bar, Kitchen };
 
 public enum OrderState { NotMet, InPreparation, Ready, Delivered }
 
-public enum Operation { New, Change, Taken };
+public enum Operation { New, Change };
 
 public delegate void AlterDelegate(Operation op, Order item);
 
@@ -216,7 +203,7 @@ public interface OrderInterface
     uint GetNewServiceID();
     void AddOrder(Order item);
     bool ChangeState(bool fromRoom, uint id);
-    bool TakeOrder(uint orderID, uint serviceID);
+    ArrayList ConsultTable(uint tableID);
 }
 
 public class AlterEventRepeater : MarshalByRefObject

@@ -1,11 +1,19 @@
 ﻿using System;
-using System.Runtime.Remoting;
+using System.Windows.Forms;
 
-class Program {
-  static void Main(string[] args) {
-    RemotingConfiguration.Configure("Register.exe.config", false);
-    Console.WriteLine("Press Return to terminate.");
-    Console.ReadLine();
-    
-  }
+namespace Register
+{
+    static class Program
+    {
+        /// <summary>
+        /// The main entry point for the application.
+        /// </summary>
+        [STAThread]
+        static void Main()
+        {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new Register());
+        }
+    }
 }

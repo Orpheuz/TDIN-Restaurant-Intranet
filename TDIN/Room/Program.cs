@@ -3,7 +3,7 @@ using System;
 using System.Windows.Forms;
 
 namespace Client {
-  static class MainClass {
+  static class Program {
     /// <summary>
     /// The main entry point for the application.
     /// </summary>

@@ -29,8 +29,17 @@
         private void InitializeComponent()
         {
             this.metroTabPage3 = new MetroFramework.Controls.MetroTabPage();
+            this.table10 = new MetroFramework.Controls.MetroTile();
+            this.table9 = new MetroFramework.Controls.MetroTile();
+            this.table8 = new MetroFramework.Controls.MetroTile();
+            this.table7 = new MetroFramework.Controls.MetroTile();
+            this.table6 = new MetroFramework.Controls.MetroTile();
+            this.table5 = new MetroFramework.Controls.MetroTile();
+            this.table4 = new MetroFramework.Controls.MetroTile();
+            this.table3 = new MetroFramework.Controls.MetroTile();
+            this.table2 = new MetroFramework.Controls.MetroTile();
+            this.table1 = new MetroFramework.Controls.MetroTile();
             this.metroTabPage4 = new MetroFramework.Controls.MetroTabPage();
-            this.deliverButton = new MetroFramework.Controls.MetroButton();
             this.itemListView = new System.Windows.Forms.ListView();
             this.ID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Description = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -38,40 +47,172 @@
             this.Table = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Quantity = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Price = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.deliverButton = new MetroFramework.Controls.MetroButton();
             this.metroTabPage2 = new MetroFramework.Controls.MetroTabPage();
-            this.descriptionLabel = new MetroFramework.Controls.MetroLabel();
-            this.tableLabel = new MetroFramework.Controls.MetroLabel();
-            this.priceLabel = new MetroFramework.Controls.MetroLabel();
-            this.quantityLabel = new MetroFramework.Controls.MetroLabel();
-            this.addOrderButton = new MetroFramework.Controls.MetroButton();
-            this.descriptionComboBox = new MetroFramework.Controls.MetroComboBox();
-            this.tableComboBox = new MetroFramework.Controls.MetroComboBox();
-            this.priceUpDown = new System.Windows.Forms.NumericUpDown();
-            this.quantityUpDown = new System.Windows.Forms.NumericUpDown();
-            this.localLabel = new MetroFramework.Controls.MetroLabel();
-            this.radioButtonKitchen = new MetroFramework.Controls.MetroRadioButton();
             this.radioButtonBar = new MetroFramework.Controls.MetroRadioButton();
+            this.radioButtonKitchen = new MetroFramework.Controls.MetroRadioButton();
+            this.localLabel = new MetroFramework.Controls.MetroLabel();
+            this.quantityUpDown = new System.Windows.Forms.NumericUpDown();
+            this.priceUpDown = new System.Windows.Forms.NumericUpDown();
+            this.tableComboBox = new MetroFramework.Controls.MetroComboBox();
+            this.descriptionComboBox = new MetroFramework.Controls.MetroComboBox();
+            this.addOrderButton = new MetroFramework.Controls.MetroButton();
+            this.quantityLabel = new MetroFramework.Controls.MetroLabel();
+            this.priceLabel = new MetroFramework.Controls.MetroLabel();
+            this.tableLabel = new MetroFramework.Controls.MetroLabel();
+            this.descriptionLabel = new MetroFramework.Controls.MetroLabel();
             this.metroTabControl1 = new MetroFramework.Controls.MetroTabControl();
+            this.metroTabPage3.SuspendLayout();
             this.metroTabPage4.SuspendLayout();
             this.metroTabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.priceUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.quantityUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.priceUpDown)).BeginInit();
             this.metroTabControl1.SuspendLayout();
             this.SuspendLayout();
             // 
             // metroTabPage3
             // 
+            this.metroTabPage3.Controls.Add(this.table10);
+            this.metroTabPage3.Controls.Add(this.table9);
+            this.metroTabPage3.Controls.Add(this.table8);
+            this.metroTabPage3.Controls.Add(this.table7);
+            this.metroTabPage3.Controls.Add(this.table6);
+            this.metroTabPage3.Controls.Add(this.table5);
+            this.metroTabPage3.Controls.Add(this.table4);
+            this.metroTabPage3.Controls.Add(this.table3);
+            this.metroTabPage3.Controls.Add(this.table2);
+            this.metroTabPage3.Controls.Add(this.table1);
             this.metroTabPage3.HorizontalScrollbarBarColor = true;
             this.metroTabPage3.HorizontalScrollbarHighlightOnWheel = false;
             this.metroTabPage3.HorizontalScrollbarSize = 10;
-            this.metroTabPage3.Location = new System.Drawing.Point(4, 35);
+            this.metroTabPage3.Location = new System.Drawing.Point(4, 38);
             this.metroTabPage3.Name = "metroTabPage3";
-            this.metroTabPage3.Size = new System.Drawing.Size(800, 408);
+            this.metroTabPage3.Size = new System.Drawing.Size(800, 405);
             this.metroTabPage3.TabIndex = 2;
             this.metroTabPage3.Text = "Consult tables";
             this.metroTabPage3.VerticalScrollbarBarColor = true;
             this.metroTabPage3.VerticalScrollbarHighlightOnWheel = false;
             this.metroTabPage3.VerticalScrollbarSize = 10;
+            // 
+            // table10
+            // 
+            this.table10.ActiveControl = null;
+            this.table10.Location = new System.Drawing.Point(667, 222);
+            this.table10.Name = "table10";
+            this.table10.Size = new System.Drawing.Size(108, 63);
+            this.table10.TabIndex = 11;
+            this.table10.Text = "Table 10";
+            this.table10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.table10.UseSelectable = true;
+            this.table10.Click += new System.EventHandler(this.table10_Click);
+            // 
+            // table9
+            // 
+            this.table9.ActiveControl = null;
+            this.table9.Location = new System.Drawing.Point(510, 222);
+            this.table9.Name = "table9";
+            this.table9.Size = new System.Drawing.Size(108, 63);
+            this.table9.TabIndex = 10;
+            this.table9.Text = "Table 9";
+            this.table9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.table9.UseSelectable = true;
+            this.table9.Click += new System.EventHandler(this.table9_Click);
+            // 
+            // table8
+            // 
+            this.table8.ActiveControl = null;
+            this.table8.Location = new System.Drawing.Point(348, 222);
+            this.table8.Name = "table8";
+            this.table8.Size = new System.Drawing.Size(108, 63);
+            this.table8.TabIndex = 9;
+            this.table8.Text = "Table 8";
+            this.table8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.table8.UseSelectable = true;
+            this.table8.Click += new System.EventHandler(this.table8_Click);
+            // 
+            // table7
+            // 
+            this.table7.ActiveControl = null;
+            this.table7.Location = new System.Drawing.Point(187, 222);
+            this.table7.Name = "table7";
+            this.table7.Size = new System.Drawing.Size(108, 63);
+            this.table7.TabIndex = 8;
+            this.table7.Text = "Table 7";
+            this.table7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.table7.UseSelectable = true;
+            this.table7.Click += new System.EventHandler(this.table7_Click);
+            // 
+            // table6
+            // 
+            this.table6.ActiveControl = null;
+            this.table6.Location = new System.Drawing.Point(21, 222);
+            this.table6.Name = "table6";
+            this.table6.Size = new System.Drawing.Size(108, 63);
+            this.table6.TabIndex = 7;
+            this.table6.Text = "Table 6";
+            this.table6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.table6.UseSelectable = true;
+            this.table6.Click += new System.EventHandler(this.table6_Click);
+            // 
+            // table5
+            // 
+            this.table5.ActiveControl = null;
+            this.table5.Location = new System.Drawing.Point(667, 103);
+            this.table5.Name = "table5";
+            this.table5.Size = new System.Drawing.Size(108, 63);
+            this.table5.TabIndex = 6;
+            this.table5.Text = "Table 5";
+            this.table5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.table5.UseSelectable = true;
+            this.table5.Click += new System.EventHandler(this.table5_Click);
+            // 
+            // table4
+            // 
+            this.table4.ActiveControl = null;
+            this.table4.Location = new System.Drawing.Point(510, 103);
+            this.table4.Name = "table4";
+            this.table4.Size = new System.Drawing.Size(108, 63);
+            this.table4.TabIndex = 5;
+            this.table4.Text = "Table 4";
+            this.table4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.table4.UseSelectable = true;
+            this.table4.Click += new System.EventHandler(this.table4_Click);
+            // 
+            // table3
+            // 
+            this.table3.ActiveControl = null;
+            this.table3.Location = new System.Drawing.Point(348, 103);
+            this.table3.Name = "table3";
+            this.table3.Size = new System.Drawing.Size(108, 63);
+            this.table3.TabIndex = 4;
+            this.table3.Text = "Table 3";
+            this.table3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.table3.UseSelectable = true;
+            this.table3.Click += new System.EventHandler(this.table3_Click);
+            // 
+            // table2
+            // 
+            this.table2.ActiveControl = null;
+            this.table2.Location = new System.Drawing.Point(187, 103);
+            this.table2.Name = "table2";
+            this.table2.Size = new System.Drawing.Size(108, 63);
+            this.table2.TabIndex = 3;
+            this.table2.Text = "Table 2";
+            this.table2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.table2.UseSelectable = true;
+            this.table2.Click += new System.EventHandler(this.table2_Click);
+            // 
+            // table1
+            // 
+            this.table1.ActiveControl = null;
+            this.table1.Location = new System.Drawing.Point(21, 103);
+            this.table1.Name = "table1";
+            this.table1.Size = new System.Drawing.Size(108, 63);
+            this.table1.TabIndex = 2;
+            this.table1.Text = "Table 1";
+            this.table1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.table1.UseSelectable = true;
+            this.table1.Click += new System.EventHandler(this.table1_Click);
             // 
             // metroTabPage4
             // 
@@ -80,26 +221,14 @@
             this.metroTabPage4.HorizontalScrollbarBarColor = true;
             this.metroTabPage4.HorizontalScrollbarHighlightOnWheel = false;
             this.metroTabPage4.HorizontalScrollbarSize = 10;
-            this.metroTabPage4.Location = new System.Drawing.Point(4, 35);
+            this.metroTabPage4.Location = new System.Drawing.Point(4, 38);
             this.metroTabPage4.Name = "metroTabPage4";
-            this.metroTabPage4.Size = new System.Drawing.Size(800, 408);
+            this.metroTabPage4.Size = new System.Drawing.Size(800, 405);
             this.metroTabPage4.TabIndex = 3;
             this.metroTabPage4.Text = "Ready orders";
             this.metroTabPage4.VerticalScrollbarBarColor = true;
             this.metroTabPage4.VerticalScrollbarHighlightOnWheel = false;
             this.metroTabPage4.VerticalScrollbarSize = 10;
-            // 
-            // deliverButton
-            // 
-            this.deliverButton.FontSize = MetroFramework.MetroButtonSize.Medium;
-            this.deliverButton.Highlight = true;
-            this.deliverButton.Location = new System.Drawing.Point(577, 346);
-            this.deliverButton.Name = "deliverButton";
-            this.deliverButton.Size = new System.Drawing.Size(170, 42);
-            this.deliverButton.TabIndex = 6;
-            this.deliverButton.Text = "Deliver";
-            this.deliverButton.UseSelectable = true;
-            this.deliverButton.Click += new System.EventHandler(this.deliverButton_Click);
             // 
             // itemListView
             // 
@@ -150,6 +279,18 @@
             this.Price.Text = "Price";
             this.Price.Width = 62;
             // 
+            // deliverButton
+            // 
+            this.deliverButton.FontSize = MetroFramework.MetroButtonSize.Medium;
+            this.deliverButton.Highlight = true;
+            this.deliverButton.Location = new System.Drawing.Point(577, 346);
+            this.deliverButton.Name = "deliverButton";
+            this.deliverButton.Size = new System.Drawing.Size(170, 42);
+            this.deliverButton.TabIndex = 6;
+            this.deliverButton.Text = "Deliver";
+            this.deliverButton.UseSelectable = true;
+            this.deliverButton.Click += new System.EventHandler(this.deliverButton_Click);
+            // 
             // metroTabPage2
             // 
             this.metroTabPage2.Controls.Add(this.radioButtonBar);
@@ -176,113 +317,16 @@
             this.metroTabPage2.VerticalScrollbarHighlightOnWheel = false;
             this.metroTabPage2.VerticalScrollbarSize = 10;
             // 
-            // descriptionLabel
+            // radioButtonBar
             // 
-            this.descriptionLabel.AutoSize = true;
-            this.descriptionLabel.FontSize = MetroFramework.MetroLabelSize.Tall;
-            this.descriptionLabel.Location = new System.Drawing.Point(53, 31);
-            this.descriptionLabel.Name = "descriptionLabel";
-            this.descriptionLabel.Size = new System.Drawing.Size(101, 25);
-            this.descriptionLabel.TabIndex = 12;
-            this.descriptionLabel.Text = "Description:";
-            // 
-            // tableLabel
-            // 
-            this.tableLabel.AutoSize = true;
-            this.tableLabel.FontSize = MetroFramework.MetroLabelSize.Tall;
-            this.tableLabel.Location = new System.Drawing.Point(101, 96);
-            this.tableLabel.Name = "tableLabel";
-            this.tableLabel.Size = new System.Drawing.Size(54, 25);
-            this.tableLabel.TabIndex = 13;
-            this.tableLabel.Text = "Table:";
-            // 
-            // priceLabel
-            // 
-            this.priceLabel.AutoSize = true;
-            this.priceLabel.FontSize = MetroFramework.MetroLabelSize.Tall;
-            this.priceLabel.Location = new System.Drawing.Point(101, 163);
-            this.priceLabel.Name = "priceLabel";
-            this.priceLabel.Size = new System.Drawing.Size(53, 25);
-            this.priceLabel.TabIndex = 14;
-            this.priceLabel.Text = "Price:";
-            // 
-            // quantityLabel
-            // 
-            this.quantityLabel.AutoSize = true;
-            this.quantityLabel.FontSize = MetroFramework.MetroLabelSize.Tall;
-            this.quantityLabel.Location = new System.Drawing.Point(74, 230);
-            this.quantityLabel.Name = "quantityLabel";
-            this.quantityLabel.Size = new System.Drawing.Size(81, 25);
-            this.quantityLabel.TabIndex = 15;
-            this.quantityLabel.Text = "Quantity:";
-            // 
-            // addOrderButton
-            // 
-            this.addOrderButton.FontSize = MetroFramework.MetroButtonSize.Medium;
-            this.addOrderButton.Highlight = true;
-            this.addOrderButton.Location = new System.Drawing.Point(578, 342);
-            this.addOrderButton.Name = "addOrderButton";
-            this.addOrderButton.Size = new System.Drawing.Size(170, 42);
-            this.addOrderButton.TabIndex = 16;
-            this.addOrderButton.Text = "Add Order";
-            this.addOrderButton.UseSelectable = true;
-            this.addOrderButton.Click += new System.EventHandler(this.addOrderButton_Click);
-            // 
-            // descriptionComboBox
-            // 
-            this.descriptionComboBox.FormattingEnabled = true;
-            this.descriptionComboBox.ItemHeight = 23;
-            this.descriptionComboBox.Location = new System.Drawing.Point(200, 27);
-            this.descriptionComboBox.Name = "descriptionComboBox";
-            this.descriptionComboBox.Size = new System.Drawing.Size(548, 29);
-            this.descriptionComboBox.TabIndex = 17;
-            this.descriptionComboBox.UseSelectable = true;
-            // 
-            // tableComboBox
-            // 
-            this.tableComboBox.FormattingEnabled = true;
-            this.tableComboBox.ItemHeight = 23;
-            this.tableComboBox.Location = new System.Drawing.Point(200, 89);
-            this.tableComboBox.Name = "tableComboBox";
-            this.tableComboBox.Size = new System.Drawing.Size(548, 29);
-            this.tableComboBox.TabIndex = 18;
-            this.tableComboBox.UseSelectable = true;
-            // 
-            // priceUpDown
-            // 
-            this.priceUpDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.priceUpDown.Location = new System.Drawing.Point(200, 159);
-            this.priceUpDown.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.priceUpDown.Name = "priceUpDown";
-            this.priceUpDown.Size = new System.Drawing.Size(548, 29);
-            this.priceUpDown.TabIndex = 19;
-            // 
-            // quantityUpDown
-            // 
-            this.quantityUpDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.quantityUpDown.Location = new System.Drawing.Point(200, 230);
-            this.quantityUpDown.Maximum = new decimal(new int[] {
-            50,
-            0,
-            0,
-            0});
-            this.quantityUpDown.Name = "quantityUpDown";
-            this.quantityUpDown.Size = new System.Drawing.Size(548, 29);
-            this.quantityUpDown.TabIndex = 20;
-            // 
-            // localLabel
-            // 
-            this.localLabel.AutoSize = true;
-            this.localLabel.FontSize = MetroFramework.MetroLabelSize.Tall;
-            this.localLabel.Location = new System.Drawing.Point(94, 292);
-            this.localLabel.Name = "localLabel";
-            this.localLabel.Size = new System.Drawing.Size(60, 25);
-            this.localLabel.TabIndex = 21;
-            this.localLabel.Text = "Local: ";
+            this.radioButtonBar.AutoSize = true;
+            this.radioButtonBar.FontSize = MetroFramework.MetroCheckBoxSize.Tall;
+            this.radioButtonBar.Location = new System.Drawing.Point(348, 292);
+            this.radioButtonBar.Name = "radioButtonBar";
+            this.radioButtonBar.Size = new System.Drawing.Size(53, 25);
+            this.radioButtonBar.TabIndex = 23;
+            this.radioButtonBar.Text = "Bar";
+            this.radioButtonBar.UseSelectable = true;
             // 
             // radioButtonKitchen
             // 
@@ -297,16 +341,113 @@
             this.radioButtonKitchen.Text = "Kitchen";
             this.radioButtonKitchen.UseSelectable = true;
             // 
-            // radioButtonBar
+            // localLabel
             // 
-            this.radioButtonBar.AutoSize = true;
-            this.radioButtonBar.FontSize = MetroFramework.MetroCheckBoxSize.Tall;
-            this.radioButtonBar.Location = new System.Drawing.Point(348, 292);
-            this.radioButtonBar.Name = "radioButtonBar";
-            this.radioButtonBar.Size = new System.Drawing.Size(53, 25);
-            this.radioButtonBar.TabIndex = 23;
-            this.radioButtonBar.Text = "Bar";
-            this.radioButtonBar.UseSelectable = true;
+            this.localLabel.AutoSize = true;
+            this.localLabel.FontSize = MetroFramework.MetroLabelSize.Tall;
+            this.localLabel.Location = new System.Drawing.Point(94, 292);
+            this.localLabel.Name = "localLabel";
+            this.localLabel.Size = new System.Drawing.Size(60, 25);
+            this.localLabel.TabIndex = 21;
+            this.localLabel.Text = "Local: ";
+            // 
+            // quantityUpDown
+            // 
+            this.quantityUpDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.quantityUpDown.Location = new System.Drawing.Point(200, 230);
+            this.quantityUpDown.Maximum = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            this.quantityUpDown.Name = "quantityUpDown";
+            this.quantityUpDown.Size = new System.Drawing.Size(548, 29);
+            this.quantityUpDown.TabIndex = 20;
+            // 
+            // priceUpDown
+            // 
+            this.priceUpDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.priceUpDown.Location = new System.Drawing.Point(200, 159);
+            this.priceUpDown.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.priceUpDown.Name = "priceUpDown";
+            this.priceUpDown.Size = new System.Drawing.Size(548, 29);
+            this.priceUpDown.TabIndex = 19;
+            // 
+            // tableComboBox
+            // 
+            this.tableComboBox.FormattingEnabled = true;
+            this.tableComboBox.ItemHeight = 23;
+            this.tableComboBox.Location = new System.Drawing.Point(200, 89);
+            this.tableComboBox.Name = "tableComboBox";
+            this.tableComboBox.Size = new System.Drawing.Size(548, 29);
+            this.tableComboBox.TabIndex = 18;
+            this.tableComboBox.UseSelectable = true;
+            // 
+            // descriptionComboBox
+            // 
+            this.descriptionComboBox.FormattingEnabled = true;
+            this.descriptionComboBox.ItemHeight = 23;
+            this.descriptionComboBox.Location = new System.Drawing.Point(200, 27);
+            this.descriptionComboBox.Name = "descriptionComboBox";
+            this.descriptionComboBox.Size = new System.Drawing.Size(548, 29);
+            this.descriptionComboBox.TabIndex = 17;
+            this.descriptionComboBox.UseSelectable = true;
+            // 
+            // addOrderButton
+            // 
+            this.addOrderButton.FontSize = MetroFramework.MetroButtonSize.Medium;
+            this.addOrderButton.Highlight = true;
+            this.addOrderButton.Location = new System.Drawing.Point(578, 342);
+            this.addOrderButton.Name = "addOrderButton";
+            this.addOrderButton.Size = new System.Drawing.Size(170, 42);
+            this.addOrderButton.TabIndex = 16;
+            this.addOrderButton.Text = "Add Order";
+            this.addOrderButton.UseSelectable = true;
+            this.addOrderButton.Click += new System.EventHandler(this.addOrderButton_Click);
+            // 
+            // quantityLabel
+            // 
+            this.quantityLabel.AutoSize = true;
+            this.quantityLabel.FontSize = MetroFramework.MetroLabelSize.Tall;
+            this.quantityLabel.Location = new System.Drawing.Point(74, 230);
+            this.quantityLabel.Name = "quantityLabel";
+            this.quantityLabel.Size = new System.Drawing.Size(81, 25);
+            this.quantityLabel.TabIndex = 15;
+            this.quantityLabel.Text = "Quantity:";
+            // 
+            // priceLabel
+            // 
+            this.priceLabel.AutoSize = true;
+            this.priceLabel.FontSize = MetroFramework.MetroLabelSize.Tall;
+            this.priceLabel.Location = new System.Drawing.Point(101, 163);
+            this.priceLabel.Name = "priceLabel";
+            this.priceLabel.Size = new System.Drawing.Size(53, 25);
+            this.priceLabel.TabIndex = 14;
+            this.priceLabel.Text = "Price:";
+            // 
+            // tableLabel
+            // 
+            this.tableLabel.AutoSize = true;
+            this.tableLabel.FontSize = MetroFramework.MetroLabelSize.Tall;
+            this.tableLabel.Location = new System.Drawing.Point(101, 96);
+            this.tableLabel.Name = "tableLabel";
+            this.tableLabel.Size = new System.Drawing.Size(54, 25);
+            this.tableLabel.TabIndex = 13;
+            this.tableLabel.Text = "Table:";
+            // 
+            // descriptionLabel
+            // 
+            this.descriptionLabel.AutoSize = true;
+            this.descriptionLabel.FontSize = MetroFramework.MetroLabelSize.Tall;
+            this.descriptionLabel.Location = new System.Drawing.Point(53, 31);
+            this.descriptionLabel.Name = "descriptionLabel";
+            this.descriptionLabel.Size = new System.Drawing.Size(101, 25);
+            this.descriptionLabel.TabIndex = 12;
+            this.descriptionLabel.Text = "Description:";
             // 
             // metroTabControl1
             // 
@@ -315,7 +456,7 @@
             this.metroTabControl1.Controls.Add(this.metroTabPage3);
             this.metroTabControl1.Location = new System.Drawing.Point(52, 63);
             this.metroTabControl1.Name = "metroTabControl1";
-            this.metroTabControl1.SelectedIndex = 0;
+            this.metroTabControl1.SelectedIndex = 2;
             this.metroTabControl1.Size = new System.Drawing.Size(808, 447);
             this.metroTabControl1.TabIndex = 6;
             this.metroTabControl1.UseSelectable = true;
@@ -329,11 +470,12 @@
             this.Name = "RoomWindow";
             this.Text = "Room";
             this.Load += new System.EventHandler(this.ReadyOrder_Load);
+            this.metroTabPage3.ResumeLayout(false);
             this.metroTabPage4.ResumeLayout(false);
             this.metroTabPage2.ResumeLayout(false);
             this.metroTabPage2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.priceUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.quantityUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.priceUpDown)).EndInit();
             this.metroTabControl1.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -365,5 +507,15 @@
         private MetroFramework.Controls.MetroLabel tableLabel;
         private MetroFramework.Controls.MetroLabel descriptionLabel;
         private MetroFramework.Controls.MetroTabControl metroTabControl1;
+        private MetroFramework.Controls.MetroTile table10;
+        private MetroFramework.Controls.MetroTile table9;
+        private MetroFramework.Controls.MetroTile table8;
+        private MetroFramework.Controls.MetroTile table7;
+        private MetroFramework.Controls.MetroTile table6;
+        private MetroFramework.Controls.MetroTile table5;
+        private MetroFramework.Controls.MetroTile table4;
+        private MetroFramework.Controls.MetroTile table3;
+        private MetroFramework.Controls.MetroTile table2;
+        private MetroFramework.Controls.MetroTile table1;
     }
 }

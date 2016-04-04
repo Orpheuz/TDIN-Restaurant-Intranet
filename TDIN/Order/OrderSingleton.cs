@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Threading;
 
 public class OrderSingleton : MarshalByRefObject, OrderInterface
@@ -52,13 +53,7 @@ public class OrderSingleton : MarshalByRefObject, OrderInterface
     public void AddOrder(Order order)
     {
         orderList.Add(order);
-        foreach(Table tab in tableList)
-        {
-            if(tab.Id == order.TableId)
-            {
-                tab.Availability = false;
-            }
-        }
+
         NotifyClients(Operation.New, order);
     }
 
@@ -96,23 +91,36 @@ public class OrderSingleton : MarshalByRefObject, OrderInterface
         return true;
     }
 
-    public bool TakeOrder(uint orderID, uint serviceID)
+    public ArrayList ConsultTable(uint tableID)
     {
-        Order order = null;
+        ArrayList orders = new ArrayList();
 
-        foreach (Order ord in orderList)
+        foreach(Order order in orderList)
         {
-            if (ord.Id == orderID)
+            if (order.TableId == tableID)
+                orders.Add(order);
+        }
+
+        foreach (Table tab in tableList)
+        {
+            if (tab.Id == tableID)
             {
-                if (ord.OrderTaker != 0)
-                    return false;
-                ord.OrderTaker = serviceID;
-                order = ord;
-                break;
+                tab.Availability = false;
             }
         }
-        NotifyClients(Operation.Taken, order);
-        return true;
+
+        return orders;
+    }
+
+    public void ProcessPayment(uint tableID)
+    {
+        foreach (Table tab in tableList)
+        {
+            if (tab.Id == tableID)
+            {
+                tab.Availability = true;
+            }
+        }
     }
 
     void NotifyClients(Operation op, Order order)

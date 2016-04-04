@@ -16,6 +16,7 @@ namespace Room
 {
     public partial class RoomWindow : MetroForm
     {
+        uint serviceID;
         OrderInterface listServer;
         ArrayList descriptions;
         ArrayList tableIDs;
@@ -30,11 +31,12 @@ namespace Room
         {
             RemotingConfiguration.Configure("Room.exe.config", false);
             InitializeComponent();
-
             listServer = (OrderInterface)RemoteNew.New(typeof(OrderInterface));
             evRepeater = new AlterEventRepeater();
             evRepeater.alterEvent += new AlterDelegate(DoAlterations);
             listServer.alterEvent += new AlterDelegate(evRepeater.Repeater);
+            serviceID = listServer.GetNewServiceID();
+            this.Text = "Room - " + serviceID.ToString();
             orders = listServer.GetListOfOrders();
             tables = listServer.GetListOfTables();
 
@@ -42,6 +44,7 @@ namespace Room
             descriptions.Add("Massa à bolonhesa");
             descriptions.Add("Carne à alentejana");
             descriptions.Add("Bacalhau à brás");
+            descriptions.Add("Hamburger de frango");
             descriptionComboBox.DataSource = descriptions;
 
             tableIDs = new ArrayList();
@@ -95,6 +98,56 @@ namespace Room
         private void orderNotification(Order order)
         {
             MetroForm not = new Popup(order.Id.ToString());
+        }
+
+        private void table1_Click(object sender, EventArgs e)
+        {
+            MetroForm tableInf = new TableInfo(listServer.ConsultTable(1), 1);
+        }
+
+        private void table2_Click(object sender, EventArgs e)
+        {
+            MetroForm tableInf = new TableInfo(listServer.ConsultTable(2), 2);
+        }
+
+        private void table3_Click(object sender, EventArgs e)
+        {
+            MetroForm tableInf = new TableInfo(listServer.ConsultTable(3), 3);
+        }
+
+        private void table4_Click(object sender, EventArgs e)
+        {
+            MetroForm tableInf = new TableInfo(listServer.ConsultTable(4), 4);
+        }
+
+        private void table5_Click(object sender, EventArgs e)
+        {
+            MetroForm tableInf = new TableInfo(listServer.ConsultTable(5), 5);
+        }
+
+        private void table6_Click(object sender, EventArgs e)
+        {
+            MetroForm tableInf = new TableInfo(listServer.ConsultTable(6), 6);
+        }
+
+        private void table7_Click(object sender, EventArgs e)
+        {
+            MetroForm tableInf = new TableInfo(listServer.ConsultTable(7), 7);
+        }
+
+        private void table8_Click(object sender, EventArgs e)
+        {
+            MetroForm tableInf = new TableInfo(listServer.ConsultTable(8), 8);
+        }
+
+        private void table9_Click(object sender, EventArgs e)
+        {
+            MetroForm tableInf = new TableInfo(listServer.ConsultTable(9), 9);
+        }
+
+        private void table10_Click(object sender, EventArgs e)
+        {
+            MetroForm tableInf = new TableInfo(listServer.ConsultTable(10), 10);
         }
 
         private void addOrderButton_Click(object sender, EventArgs e)
@@ -154,7 +207,6 @@ namespace Room
                 return;
             }
         }
-
     }
 
     class RemoteNew
