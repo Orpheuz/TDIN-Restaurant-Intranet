@@ -1,6 +1,11 @@
 ﻿using System;
 using System.Collections;
+using System.IO;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading;
+using System.Xml;
+using System.Xml.Serialization;
 
 public class OrderSingleton : MarshalByRefObject, OrderInterface
 {
@@ -135,6 +140,27 @@ public class OrderSingleton : MarshalByRefObject, OrderInterface
                 tab.Availability = true;
             }
         }       
+    }
+
+    public void SerializeOrders()
+    {
+        IFormatter formatter = new BinaryFormatter();
+        Stream stream = new FileStream("orders.bin", FileMode.Create, FileAccess.Write, FileShare.None);
+        formatter.Serialize(stream, orderList);
+        stream.Close();
+    }
+
+    public void DeserializeOrders()
+    {
+        IFormatter formatter = new BinaryFormatter();
+        if(File.Exists("orders.bin"))
+        {
+            Stream stream = new FileStream("orders.bin", FileMode.Open, FileAccess.Read, FileShare.Read);
+            ArrayList obj = (ArrayList)formatter.Deserialize(stream);
+            stream.Close();
+
+            orderList = obj;
+        } 
     }
 
     void NotifyClients(Operation op, Order order)

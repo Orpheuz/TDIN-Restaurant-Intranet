@@ -57,6 +57,19 @@ public class Order
         }
     }
 
+    private DateTime date;
+    public DateTime Date
+    {
+        get
+        {
+            return this.date;
+        }
+        set
+        {
+            this.date = value;
+        }
+    }
+
     private OrderState state;
     public OrderState State
     {
@@ -166,6 +179,7 @@ public class Order
         this.local = local;
         this.price = price;
         this.paymentDone = false;
+        this.date = DateTime.Now;
     }
 
     public String getStateString()
@@ -211,6 +225,8 @@ public interface OrderInterface
     void AddOrder(Order order);
     bool ChangeState(bool fromRoom, uint id);
     ArrayList ConsultTable(uint tableID, bool notify);
+    void SerializeOrders();
+    void DeserializeOrders();
 }
 
 

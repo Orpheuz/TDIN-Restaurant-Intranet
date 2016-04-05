@@ -136,7 +136,7 @@
             this.ClientSize = new System.Drawing.Size(910, 514);
             this.Controls.Add(this.metroTabControl1);
             this.Name = "KitchenBar";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Room_FormClosed);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.KitchenBar_FormClosed);
             this.Load += new System.EventHandler(this.Orders_Load);
             this.metroTabControl1.ResumeLayout(false);
             this.metroTabPage1.ResumeLayout(false);

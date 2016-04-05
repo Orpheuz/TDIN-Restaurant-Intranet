@@ -9,27 +9,40 @@ namespace Register
 {
     public partial class Register : MetroForm
     {
-        OrderSingleton orders;
+        OrderSingleton ordersS;
         AlterEventRepeater evRepeater;
         delegate void printDlg(uint tableID);
+        delegate ListViewItem LVAddDelegate(ListViewItem lvItem);
+        ArrayList orders;
 
         public Register()
         {
             RemotingConfiguration.Configure("Register.exe.config", false);
             InitializeComponent();
-            orders = (OrderSingleton)Activator.GetObject(typeof(OrderSingleton), "tcp://localhost:9000/Register/ListServer");
-
+            ordersS = (OrderSingleton)Activator.GetObject(typeof(OrderSingleton), "tcp://localhost:9000/Register/ListServer");
+            ordersS.DeserializeOrders();
+            orders = ordersS.GetListOfOrders();
             evRepeater = new AlterEventRepeater();
             evRepeater.alterEvent += new AlterDelegate(DoAlterations);
-            orders.alterEvent += new AlterDelegate(evRepeater.Repeater);
+            ordersS.alterEvent += new AlterDelegate(evRepeater.Repeater);
         }
 
         private void DoAlterations(Operation op, Order order)
         {
             printDlg prtDlg;
+            LVAddDelegate lvAdd;
+            ListViewItem lvItem;
 
             switch (op)
             {
+                case Operation.Change:
+                    if (order.State == OrderState.Delivered && order.PaymentDone)
+                    {
+                        lvAdd = new LVAddDelegate(orderLV.Items.Add);
+                        lvItem = new ListViewItem(new string[] { order.Id.ToString(), order.Description, order.getStateString(), order.TableId.ToString(), order.Quantity.ToString(), order.Price.ToString() });
+                        BeginInvoke(lvAdd, new object[] { lvItem });
+                    }
+                    break;
                 case Operation.Print:
                     prtDlg = new printDlg(PrintDelegate);
                     BeginInvoke(prtDlg, new object[] { order.TableId });
@@ -37,9 +50,21 @@ namespace Register
             }
         }
 
+        private void Orders_Load(object sender, EventArgs e)
+        {
+            foreach (Order ord in orders)
+            {
+                if (ord.PaymentDone && ord.Date.Day == DateTime.Now.Day && ord.Date.Month == DateTime.Now.Month && ord.Date.Year == DateTime.Now.Year)
+                {
+                    ListViewItem lvItem = new ListViewItem(new string[] { ord.Id.ToString(), ord.Description, ord.getStateString(), ord.TableId.ToString(), ord.Quantity.ToString(), ord.Price.ToString(), ord.Local.ToString() });
+                    orderLV.Items.Add(lvItem);
+                }
+            }
+        }
+
         private void PrintDelegate(uint tableID)
         {
-            ArrayList temp = orders.ConsultTable(tableID, false);
+            ArrayList temp = ordersS.ConsultTable(tableID, false);
             if (temp.Count == 0)
             {
                 MetroMessageBox.Show(this, "Chose another table", "Table has no orders", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -50,7 +75,7 @@ namespace Register
 
         private void table1_Click(object sender, EventArgs e)
         {
-            ArrayList temp = orders.ConsultTable(1, false);
+            ArrayList temp = ordersS.ConsultTable(1, false);
             if (temp.Count == 0)
             {
                 MetroMessageBox.Show(this, "Chose another table", "Table has no orders", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -61,7 +86,7 @@ namespace Register
 
         private void table2_Click(object sender, EventArgs e)
         {
-            ArrayList temp = orders.ConsultTable(2, false);
+            ArrayList temp = ordersS.ConsultTable(2, false);
             if (temp.Count == 0)
             {
                 MetroMessageBox.Show(this, "Chose another table", "Table has no orders", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -72,7 +97,7 @@ namespace Register
 
         private void table3_Click(object sender, EventArgs e)
         {
-            ArrayList temp = orders.ConsultTable(3, false);
+            ArrayList temp = ordersS.ConsultTable(3, false);
             if (temp.Count == 0)
             {
                 MetroMessageBox.Show(this, "Chose another table", "Table has no orders", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -83,7 +108,7 @@ namespace Register
 
         private void table4_Click(object sender, EventArgs e)
         {
-            ArrayList temp = orders.ConsultTable(4, false);
+            ArrayList temp = ordersS.ConsultTable(4, false);
             if (temp.Count == 0)
             {
                 MetroMessageBox.Show(this, "Chose another table", "Table has no orders", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -94,7 +119,7 @@ namespace Register
 
         private void table5_Click(object sender, EventArgs e)
         {
-            ArrayList temp = orders.ConsultTable(5, false);
+            ArrayList temp = ordersS.ConsultTable(5, false);
             if (temp.Count == 0)
             {
                 MetroMessageBox.Show(this, "Chose another table", "Table has no orders", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -105,7 +130,7 @@ namespace Register
 
         private void table6_Click(object sender, EventArgs e)
         {
-            ArrayList temp = orders.ConsultTable(6, false);
+            ArrayList temp = ordersS.ConsultTable(6, false);
             if (temp.Count == 0)
             {
                 MetroMessageBox.Show(this, "Chose another table", "Table has no orders", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -116,7 +141,7 @@ namespace Register
 
         private void table7_Click(object sender, EventArgs e)
         {
-            ArrayList temp = orders.ConsultTable(7, false);
+            ArrayList temp = ordersS.ConsultTable(7, false);
             if (temp.Count == 0)
             {
                 MetroMessageBox.Show(this, "Chose another table", "Table has no orders", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -127,7 +152,7 @@ namespace Register
 
         private void table8_Click(object sender, EventArgs e)
         {
-            ArrayList temp = orders.ConsultTable(8, false);
+            ArrayList temp = ordersS.ConsultTable(8, false);
             if (temp.Count == 0)
             {
                 MetroMessageBox.Show(this, "Chose another table", "Table has no orders", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -138,7 +163,7 @@ namespace Register
 
         private void table9_Click(object sender, EventArgs e)
         {
-            ArrayList temp = orders.ConsultTable(9, false);
+            ArrayList temp = ordersS.ConsultTable(9, false);
             if (temp.Count == 0)
             {
                 MetroMessageBox.Show(this, "Chose another table", "Table has no orders", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -149,13 +174,21 @@ namespace Register
 
         private void table10_Click(object sender, EventArgs e)
         {
-            ArrayList temp = orders.ConsultTable(10, false);
+            ArrayList temp = ordersS.ConsultTable(10, false);
             if (temp.Count == 0)
             {
                 MetroMessageBox.Show(this, "Chose another table", "Table has no orders", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             MetroForm tableInf = new TableInfo(temp, 10, false);
+        }
+
+        private void Register_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            ordersS.SerializeOrders();
+            Console.ReadLine();
+            ordersS.alterEvent -= new AlterDelegate(evRepeater.Repeater);
+            evRepeater.alterEvent -= new AlterDelegate(DoAlterations);
         }
     }
 }

@@ -286,6 +286,17 @@ namespace Room
                 return;
             }
         }
+
+        private void Room_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            listServer.alterEvent -= new AlterDelegate(evRepeater.Repeater);
+            evRepeater.alterEvent -= new AlterDelegate(DoAlterations);
+        }
+
+        private void metroButton1_Click(object sender, EventArgs e)
+        {
+            listServer.SerializeOrders();
+        }
     }
 
     class RemoteNew

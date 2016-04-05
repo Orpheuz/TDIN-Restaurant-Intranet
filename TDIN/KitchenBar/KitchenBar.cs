@@ -91,7 +91,7 @@ namespace KitchenBar
             }
         }
 
-        private void Room_FormClosed(object sender, FormClosedEventArgs e)
+        private void KitchenBar_FormClosed(object sender, FormClosedEventArgs e)
         {
             listServer.alterEvent -= new AlterDelegate(evRepeater.Repeater);
             evRepeater.alterEvent -= new AlterDelegate(DoAlterations);
