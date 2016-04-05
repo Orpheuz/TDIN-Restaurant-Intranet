@@ -19,12 +19,14 @@ namespace Room
         uint serviceID;
         OrderInterface listServer;
         ArrayList descriptions;
+        ArrayList locations;
+        ArrayList price;
         ArrayList tableIDs;
         ArrayList tables;
         ArrayList orders;
         AlterEventRepeater evRepeater;
         delegate void notificationDlg(Order order);
-        delegate void deliveredOrderDelg(Order order);
+        delegate void changeRmOrderDelg(Order order);
         delegate ListViewItem LVAddDelegate(ListViewItem lvItem);
 
         public RoomWindow()
@@ -41,16 +43,32 @@ namespace Room
             tables = listServer.GetListOfTables();
 
             descriptions = new ArrayList();
+            locations = new ArrayList();
+            price = new ArrayList();
             descriptions.Add("Massa à bolonhesa");
+            locations.Add(Local.Kitchen);
+            price.Add(10);
             descriptions.Add("Carne à alentejana");
+            locations.Add(Local.Kitchen);
+            price.Add(15);
             descriptions.Add("Bacalhau à brás");
+            locations.Add(Local.Kitchen);
+            price.Add(18);
             descriptions.Add("Hamburger de frango");
+            locations.Add(Local.Bar);
+            price.Add(10);
+            descriptions.Add("Tosta mista");
+            locations.Add(Local.Bar);
+            price.Add(3);
+            descriptions.Add("Cachorro");
+            locations.Add(Local.Bar);
+            price.Add(6);
             descriptionComboBox.DataSource = descriptions;
 
             tableIDs = new ArrayList();
             for (uint i = 0; i < tables.Count; i++)
             {
-                tableIDs.Add(i);
+                tableIDs.Add(i + 1);
             }
             tableComboBox.DataSource = tableIDs;
         }
@@ -59,10 +77,14 @@ namespace Room
         {
             LVAddDelegate lvAdd;
             notificationDlg ntfDlg;
-            deliveredOrderDelg delOrdDlg;
+            changeRmOrderDelg delOrdDlg;
 
             switch (op)
             {
+                case Operation.Payment:
+                    delOrdDlg = new changeRmOrderDelg(DeleteOrderDlg);
+                    BeginInvoke(delOrdDlg, new object[] { order });
+                    break;
                 case Operation.Change:
                     if (order.State == OrderState.Ready)
                     {
@@ -76,14 +98,14 @@ namespace Room
                     }
                     if(order.State == OrderState.Delivered)
                     {
-                        delOrdDlg = new deliveredOrderDelg(DeliveredOrderDlg);
+                        delOrdDlg = new changeRmOrderDelg(DeleteOrderDlg);
                         BeginInvoke(delOrdDlg, new object[] { order });
                     }
                     break;
             }
         }
 
-        private void DeliveredOrderDlg(Order order)
+        private void DeleteOrderDlg(Order order)
         {
             foreach (ListViewItem item in itemListView.Items)
             {
@@ -102,67 +124,124 @@ namespace Room
 
         private void table1_Click(object sender, EventArgs e)
         {
-            MetroForm tableInf = new TableInfo(listServer.ConsultTable(1), 1);
+            ArrayList temp = listServer.ConsultTable(1, true);
+            if(temp.Count == 0)
+            {
+                MetroMessageBox.Show(this, "Chose another table", "Table has no orders", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            MetroForm tableInf = new TableInfo(temp, 1);
         }
 
         private void table2_Click(object sender, EventArgs e)
         {
-            MetroForm tableInf = new TableInfo(listServer.ConsultTable(2), 2);
+            ArrayList temp = listServer.ConsultTable(2, true);
+            if (temp.Count == 0)
+            {
+                MetroMessageBox.Show(this, "Chose another table", "Table has no orders", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            MetroForm tableInf = new TableInfo(temp, 2);
         }
 
         private void table3_Click(object sender, EventArgs e)
         {
-            MetroForm tableInf = new TableInfo(listServer.ConsultTable(3), 3);
+            ArrayList temp = listServer.ConsultTable(3, true);
+            if (temp.Count == 0)
+            {
+                MetroMessageBox.Show(this, "Chose another table", "Table has no orders", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            MetroForm tableInf = new TableInfo(temp, 3);
         }
 
         private void table4_Click(object sender, EventArgs e)
         {
-            MetroForm tableInf = new TableInfo(listServer.ConsultTable(4), 4);
+            ArrayList temp = listServer.ConsultTable(4, true);
+            if (temp.Count == 0)
+            {
+                MetroMessageBox.Show(this, "Chose another table", "Table has no orders", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            MetroForm tableInf = new TableInfo(temp, 4);
         }
 
         private void table5_Click(object sender, EventArgs e)
         {
-            MetroForm tableInf = new TableInfo(listServer.ConsultTable(5), 5);
+            ArrayList temp = listServer.ConsultTable(5, true);
+            if (temp.Count == 0)
+            {
+                MetroMessageBox.Show(this, "Chose another table", "Table has no orders", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            MetroForm tableInf = new TableInfo(temp, 5);
         }
 
         private void table6_Click(object sender, EventArgs e)
         {
-            MetroForm tableInf = new TableInfo(listServer.ConsultTable(6), 6);
+            ArrayList temp = listServer.ConsultTable(6, true);
+            if (temp.Count == 0)
+            {
+                MetroMessageBox.Show(this, "Chose another table", "Table has no orders", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            MetroForm tableInf = new TableInfo(temp, 6);
         }
 
         private void table7_Click(object sender, EventArgs e)
         {
-            MetroForm tableInf = new TableInfo(listServer.ConsultTable(7), 7);
+            ArrayList temp = listServer.ConsultTable(7, true);
+            if (temp.Count == 0)
+            {
+                MetroMessageBox.Show(this, "Chose another table", "Table has no orders", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            MetroForm tableInf = new TableInfo(temp, 7);
         }
 
         private void table8_Click(object sender, EventArgs e)
         {
-            MetroForm tableInf = new TableInfo(listServer.ConsultTable(8), 8);
+            ArrayList temp = listServer.ConsultTable(8, true);
+            if (temp.Count == 0)
+            {
+                MetroMessageBox.Show(this, "Chose another table", "Table has no orders", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            MetroForm tableInf = new TableInfo(temp, 8);
         }
 
         private void table9_Click(object sender, EventArgs e)
         {
-            MetroForm tableInf = new TableInfo(listServer.ConsultTable(9), 9);
+            ArrayList temp = listServer.ConsultTable(9, true);
+            if (temp.Count == 0)
+            {
+                MetroMessageBox.Show(this, "Chose another table", "Table has no orders", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            MetroForm tableInf = new TableInfo(temp, 9);
         }
 
         private void table10_Click(object sender, EventArgs e)
         {
-            MetroForm tableInf = new TableInfo(listServer.ConsultTable(10), 10);
+            ArrayList temp = listServer.ConsultTable(10, true);
+            if (temp.Count == 0)
+            {
+                MetroMessageBox.Show(this, "Chose another table", "Table has no orders", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            MetroForm tableInf = new TableInfo(temp, 10);
         }
 
         private void addOrderButton_Click(object sender, EventArgs e)
         {
             tables = listServer.GetListOfTables();
-            Local localValue;
-            if (radioButtonKitchen.Checked)
-                localValue = Local.Kitchen;
-            else localValue = Local.Bar;
+            int index = descriptionComboBox.SelectedIndex;
             if (!(isTableAvailable((uint)tableComboBox.SelectedValue)))
             {
                 MetroMessageBox.Show(this, "Chose other table", "Table is unavailable", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            Order ord = new Order(listServer.GetNewID(), descriptionComboBox.SelectedValue.ToString(), (uint)quantityUpDown.Value, (uint)tableComboBox.SelectedValue, localValue, (uint)priceUpDown.Value);
+            Order ord = new Order(listServer.GetNewID(), descriptionComboBox.SelectedValue.ToString(), (uint)quantityUpDown.Value, (uint)tableComboBox.SelectedValue, (Local)locations[index], Convert.ToUInt32(price[index]));
             listServer.AddOrder(ord);
         }
 
@@ -182,7 +261,7 @@ namespace Room
         {
             foreach (Order ord in orders)
             {
-                if (ord.State == OrderState.Ready)
+                if (ord.State == OrderState.Ready && !ord.PaymentDone)
                 {
                     ListViewItem lvItem = new ListViewItem(new string[] { ord.Id.ToString(), ord.Description, ord.getStateString(), ord.TableId.ToString(), ord.Quantity.ToString(), ord.Price.ToString() });
                     itemListView.Items.Add(lvItem);

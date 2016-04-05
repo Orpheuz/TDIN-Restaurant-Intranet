@@ -134,19 +134,25 @@ public class Order
             this.price = value;
         }
     }
+
+    private bool paymentDone;
+    public bool PaymentDone
+    {
+        get
+        {
+            return this.paymentDone;
+        }
+        set
+        {
+            this.paymentDone = value;
+        }
+    }
+
     #endregion
 
     public Order() : this(0, "", 0, 0, Local.Kitchen, 0)
     {
 
-    }
-
-    //Dummy constructor
-    public Order(uint id, String description)
-    {
-        this.id = id;
-        this.description = description;
-        this.state = OrderState.NotMet;
     }
 
     public Order(uint id, String description, uint quantity, uint tableId, Local local, uint price)
@@ -159,6 +165,7 @@ public class Order
         this.tableId = tableId;
         this.local = local;
         this.price = price;
+        this.paymentDone = false;
     }
 
     public String getStateString()
@@ -189,9 +196,9 @@ public enum Local { Bar, Kitchen };
 
 public enum OrderState { NotMet, InPreparation, Ready, Delivered }
 
-public enum Operation { New, Change };
+public enum Operation { New, Change, Print, Payment };
 
-public delegate void AlterDelegate(Operation op, Order item);
+public delegate void AlterDelegate(Operation op, Order order);
 
 public interface OrderInterface
 {
@@ -201,10 +208,11 @@ public interface OrderInterface
     ArrayList GetListOfOrders();
     uint GetNewID();
     uint GetNewServiceID();
-    void AddOrder(Order item);
+    void AddOrder(Order order);
     bool ChangeState(bool fromRoom, uint id);
-    ArrayList ConsultTable(uint tableID);
+    ArrayList ConsultTable(uint tableID, bool notify);
 }
+
 
 public class AlterEventRepeater : MarshalByRefObject
 {

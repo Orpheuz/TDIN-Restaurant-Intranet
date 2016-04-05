@@ -49,16 +49,11 @@
             this.Price = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.deliverButton = new MetroFramework.Controls.MetroButton();
             this.metroTabPage2 = new MetroFramework.Controls.MetroTabPage();
-            this.radioButtonBar = new MetroFramework.Controls.MetroRadioButton();
-            this.radioButtonKitchen = new MetroFramework.Controls.MetroRadioButton();
-            this.localLabel = new MetroFramework.Controls.MetroLabel();
             this.quantityUpDown = new System.Windows.Forms.NumericUpDown();
-            this.priceUpDown = new System.Windows.Forms.NumericUpDown();
             this.tableComboBox = new MetroFramework.Controls.MetroComboBox();
             this.descriptionComboBox = new MetroFramework.Controls.MetroComboBox();
             this.addOrderButton = new MetroFramework.Controls.MetroButton();
             this.quantityLabel = new MetroFramework.Controls.MetroLabel();
-            this.priceLabel = new MetroFramework.Controls.MetroLabel();
             this.tableLabel = new MetroFramework.Controls.MetroLabel();
             this.descriptionLabel = new MetroFramework.Controls.MetroLabel();
             this.metroTabControl1 = new MetroFramework.Controls.MetroTabControl();
@@ -66,7 +61,6 @@
             this.metroTabPage4.SuspendLayout();
             this.metroTabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.quantityUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.priceUpDown)).BeginInit();
             this.metroTabControl1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -88,7 +82,7 @@
             this.metroTabPage3.Location = new System.Drawing.Point(4, 38);
             this.metroTabPage3.Name = "metroTabPage3";
             this.metroTabPage3.Size = new System.Drawing.Size(800, 405);
-            this.metroTabPage3.TabIndex = 2;
+            this.metroTabPage3.TabIndex = 3;
             this.metroTabPage3.Text = "Consult tables";
             this.metroTabPage3.VerticalScrollbarBarColor = true;
             this.metroTabPage3.VerticalScrollbarHighlightOnWheel = false;
@@ -293,16 +287,11 @@
             // 
             // metroTabPage2
             // 
-            this.metroTabPage2.Controls.Add(this.radioButtonBar);
-            this.metroTabPage2.Controls.Add(this.radioButtonKitchen);
-            this.metroTabPage2.Controls.Add(this.localLabel);
             this.metroTabPage2.Controls.Add(this.quantityUpDown);
-            this.metroTabPage2.Controls.Add(this.priceUpDown);
             this.metroTabPage2.Controls.Add(this.tableComboBox);
             this.metroTabPage2.Controls.Add(this.descriptionComboBox);
             this.metroTabPage2.Controls.Add(this.addOrderButton);
             this.metroTabPage2.Controls.Add(this.quantityLabel);
-            this.metroTabPage2.Controls.Add(this.priceLabel);
             this.metroTabPage2.Controls.Add(this.tableLabel);
             this.metroTabPage2.Controls.Add(this.descriptionLabel);
             this.metroTabPage2.HorizontalScrollbarBarColor = true;
@@ -310,78 +299,41 @@
             this.metroTabPage2.HorizontalScrollbarSize = 10;
             this.metroTabPage2.Location = new System.Drawing.Point(4, 38);
             this.metroTabPage2.Name = "metroTabPage2";
-            this.metroTabPage2.Size = new System.Drawing.Size(800, 405);
-            this.metroTabPage2.TabIndex = 1;
+            this.metroTabPage2.Size = new System.Drawing.Size(800, 403);
+            this.metroTabPage2.TabIndex = 2;
             this.metroTabPage2.Text = "Add order";
             this.metroTabPage2.VerticalScrollbarBarColor = true;
             this.metroTabPage2.VerticalScrollbarHighlightOnWheel = false;
             this.metroTabPage2.VerticalScrollbarSize = 10;
             // 
-            // radioButtonBar
-            // 
-            this.radioButtonBar.AutoSize = true;
-            this.radioButtonBar.FontSize = MetroFramework.MetroCheckBoxSize.Tall;
-            this.radioButtonBar.Location = new System.Drawing.Point(348, 292);
-            this.radioButtonBar.Name = "radioButtonBar";
-            this.radioButtonBar.Size = new System.Drawing.Size(53, 25);
-            this.radioButtonBar.TabIndex = 23;
-            this.radioButtonBar.Text = "Bar";
-            this.radioButtonBar.UseSelectable = true;
-            // 
-            // radioButtonKitchen
-            // 
-            this.radioButtonKitchen.AutoSize = true;
-            this.radioButtonKitchen.Checked = true;
-            this.radioButtonKitchen.FontSize = MetroFramework.MetroCheckBoxSize.Tall;
-            this.radioButtonKitchen.Location = new System.Drawing.Point(200, 292);
-            this.radioButtonKitchen.Name = "radioButtonKitchen";
-            this.radioButtonKitchen.Size = new System.Drawing.Size(85, 25);
-            this.radioButtonKitchen.TabIndex = 22;
-            this.radioButtonKitchen.TabStop = true;
-            this.radioButtonKitchen.Text = "Kitchen";
-            this.radioButtonKitchen.UseSelectable = true;
-            // 
-            // localLabel
-            // 
-            this.localLabel.AutoSize = true;
-            this.localLabel.FontSize = MetroFramework.MetroLabelSize.Tall;
-            this.localLabel.Location = new System.Drawing.Point(94, 292);
-            this.localLabel.Name = "localLabel";
-            this.localLabel.Size = new System.Drawing.Size(60, 25);
-            this.localLabel.TabIndex = 21;
-            this.localLabel.Text = "Local: ";
-            // 
             // quantityUpDown
             // 
             this.quantityUpDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.quantityUpDown.Location = new System.Drawing.Point(200, 230);
+            this.quantityUpDown.Location = new System.Drawing.Point(201, 225);
             this.quantityUpDown.Maximum = new decimal(new int[] {
             50,
+            0,
+            0,
+            0});
+            this.quantityUpDown.Minimum = new decimal(new int[] {
+            1,
             0,
             0,
             0});
             this.quantityUpDown.Name = "quantityUpDown";
             this.quantityUpDown.Size = new System.Drawing.Size(548, 29);
             this.quantityUpDown.TabIndex = 20;
-            // 
-            // priceUpDown
-            // 
-            this.priceUpDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.priceUpDown.Location = new System.Drawing.Point(200, 159);
-            this.priceUpDown.Maximum = new decimal(new int[] {
-            10000,
+            this.quantityUpDown.Value = new decimal(new int[] {
+            1,
             0,
             0,
             0});
-            this.priceUpDown.Name = "priceUpDown";
-            this.priceUpDown.Size = new System.Drawing.Size(548, 29);
-            this.priceUpDown.TabIndex = 19;
             // 
             // tableComboBox
             // 
             this.tableComboBox.FormattingEnabled = true;
             this.tableComboBox.ItemHeight = 23;
-            this.tableComboBox.Location = new System.Drawing.Point(200, 89);
+            this.tableComboBox.Location = new System.Drawing.Point(201, 157);
             this.tableComboBox.Name = "tableComboBox";
             this.tableComboBox.Size = new System.Drawing.Size(548, 29);
             this.tableComboBox.TabIndex = 18;
@@ -391,7 +343,7 @@
             // 
             this.descriptionComboBox.FormattingEnabled = true;
             this.descriptionComboBox.ItemHeight = 23;
-            this.descriptionComboBox.Location = new System.Drawing.Point(200, 27);
+            this.descriptionComboBox.Location = new System.Drawing.Point(201, 95);
             this.descriptionComboBox.Name = "descriptionComboBox";
             this.descriptionComboBox.Size = new System.Drawing.Size(548, 29);
             this.descriptionComboBox.TabIndex = 17;
@@ -401,7 +353,7 @@
             // 
             this.addOrderButton.FontSize = MetroFramework.MetroButtonSize.Medium;
             this.addOrderButton.Highlight = true;
-            this.addOrderButton.Location = new System.Drawing.Point(578, 342);
+            this.addOrderButton.Location = new System.Drawing.Point(579, 342);
             this.addOrderButton.Name = "addOrderButton";
             this.addOrderButton.Size = new System.Drawing.Size(170, 42);
             this.addOrderButton.TabIndex = 16;
@@ -413,27 +365,17 @@
             // 
             this.quantityLabel.AutoSize = true;
             this.quantityLabel.FontSize = MetroFramework.MetroLabelSize.Tall;
-            this.quantityLabel.Location = new System.Drawing.Point(74, 230);
+            this.quantityLabel.Location = new System.Drawing.Point(75, 229);
             this.quantityLabel.Name = "quantityLabel";
             this.quantityLabel.Size = new System.Drawing.Size(81, 25);
             this.quantityLabel.TabIndex = 15;
             this.quantityLabel.Text = "Quantity:";
             // 
-            // priceLabel
-            // 
-            this.priceLabel.AutoSize = true;
-            this.priceLabel.FontSize = MetroFramework.MetroLabelSize.Tall;
-            this.priceLabel.Location = new System.Drawing.Point(101, 163);
-            this.priceLabel.Name = "priceLabel";
-            this.priceLabel.Size = new System.Drawing.Size(53, 25);
-            this.priceLabel.TabIndex = 14;
-            this.priceLabel.Text = "Price:";
-            // 
             // tableLabel
             // 
             this.tableLabel.AutoSize = true;
             this.tableLabel.FontSize = MetroFramework.MetroLabelSize.Tall;
-            this.tableLabel.Location = new System.Drawing.Point(101, 96);
+            this.tableLabel.Location = new System.Drawing.Point(102, 164);
             this.tableLabel.Name = "tableLabel";
             this.tableLabel.Size = new System.Drawing.Size(54, 25);
             this.tableLabel.TabIndex = 13;
@@ -443,7 +385,7 @@
             // 
             this.descriptionLabel.AutoSize = true;
             this.descriptionLabel.FontSize = MetroFramework.MetroLabelSize.Tall;
-            this.descriptionLabel.Location = new System.Drawing.Point(53, 31);
+            this.descriptionLabel.Location = new System.Drawing.Point(54, 99);
             this.descriptionLabel.Name = "descriptionLabel";
             this.descriptionLabel.Size = new System.Drawing.Size(101, 25);
             this.descriptionLabel.TabIndex = 12;
@@ -456,8 +398,8 @@
             this.metroTabControl1.Controls.Add(this.metroTabPage3);
             this.metroTabControl1.Location = new System.Drawing.Point(52, 63);
             this.metroTabControl1.Name = "metroTabControl1";
-            this.metroTabControl1.SelectedIndex = 2;
-            this.metroTabControl1.Size = new System.Drawing.Size(808, 447);
+            this.metroTabControl1.SelectedIndex = 0;
+            this.metroTabControl1.Size = new System.Drawing.Size(808, 445);
             this.metroTabControl1.TabIndex = 6;
             this.metroTabControl1.UseSelectable = true;
             // 
@@ -475,7 +417,6 @@
             this.metroTabPage2.ResumeLayout(false);
             this.metroTabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.quantityUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.priceUpDown)).EndInit();
             this.metroTabControl1.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -494,16 +435,11 @@
         private System.Windows.Forms.ColumnHeader Price;
         public MetroFramework.Controls.MetroButton deliverButton;
         private MetroFramework.Controls.MetroTabPage metroTabPage2;
-        private MetroFramework.Controls.MetroRadioButton radioButtonBar;
-        private MetroFramework.Controls.MetroRadioButton radioButtonKitchen;
-        private MetroFramework.Controls.MetroLabel localLabel;
         private System.Windows.Forms.NumericUpDown quantityUpDown;
-        private System.Windows.Forms.NumericUpDown priceUpDown;
         private MetroFramework.Controls.MetroComboBox tableComboBox;
         private MetroFramework.Controls.MetroComboBox descriptionComboBox;
         public MetroFramework.Controls.MetroButton addOrderButton;
         private MetroFramework.Controls.MetroLabel quantityLabel;
-        private MetroFramework.Controls.MetroLabel priceLabel;
         private MetroFramework.Controls.MetroLabel tableLabel;
         private MetroFramework.Controls.MetroLabel descriptionLabel;
         private MetroFramework.Controls.MetroTabControl metroTabControl1;
