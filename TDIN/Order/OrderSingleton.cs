@@ -49,6 +49,21 @@ public class OrderSingleton : MarshalByRefObject, OrderInterface
         return id++;
     }
 
+    public void UpdateOrderID()
+    {
+        uint max = 0;
+
+        if (orderList.Count == 0)
+            return;
+
+        foreach(Order ord in orderList)
+        {
+            if (ord.Id > max)
+                max = ord.Id;
+        }
+        id = max + 1;
+    }
+
     public uint GetNewServiceID()
     {
         return serviceID++;
@@ -145,7 +160,7 @@ public class OrderSingleton : MarshalByRefObject, OrderInterface
     public void SerializeOrders()
     {
         IFormatter formatter = new BinaryFormatter();
-        Stream stream = new FileStream("orders.bin", FileMode.Create, FileAccess.Write, FileShare.None);
+        Stream stream = new FileStream("orders.bin", FileMode.Create, FileAccess.ReadWrite, FileShare.None);
         formatter.Serialize(stream, orderList);
         stream.Close();
     }
@@ -155,12 +170,25 @@ public class OrderSingleton : MarshalByRefObject, OrderInterface
         IFormatter formatter = new BinaryFormatter();
         if(File.Exists("orders.bin"))
         {
-            Stream stream = new FileStream("orders.bin", FileMode.Open, FileAccess.Read, FileShare.Read);
+            Stream stream = new FileStream("orders.bin", FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite);
             ArrayList obj = (ArrayList)formatter.Deserialize(stream);
             stream.Close();
 
             orderList = obj;
         } 
+    }
+
+    public ArrayList GetListFromDate(DateTime date)
+    {
+        ArrayList temp = new ArrayList();
+
+        foreach(Order ord in orderList)
+        {
+            if (ord.Date.Day == date.Day && ord.Date.Month == date.Month && ord.Date.Year == date.Year)
+                temp.Add(ord);
+        }
+
+        return temp;
     }
 
     void NotifyClients(Operation op, Order order)

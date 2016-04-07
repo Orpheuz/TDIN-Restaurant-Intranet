@@ -221,12 +221,14 @@ public interface OrderInterface
     ArrayList GetListOfTables();
     ArrayList GetListOfOrders();
     uint GetNewID();
+    void UpdateOrderID();
     uint GetNewServiceID();
     void AddOrder(Order order);
     bool ChangeState(bool fromRoom, uint id);
     ArrayList ConsultTable(uint tableID, bool notify);
     void SerializeOrders();
     void DeserializeOrders();
+    ArrayList GetListFromDate(DateTime date);
 }
 
 

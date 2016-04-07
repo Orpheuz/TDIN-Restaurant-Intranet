@@ -86,8 +86,11 @@ namespace KitchenBar
         {
             foreach (Order ord in orders)
             {
-                ListViewItem lvItem = new ListViewItem(new string[] { ord.Id.ToString(), ord.Description, ord.getStateString(), ord.TableId.ToString(), ord.Quantity.ToString(), ord.Price.ToString() });
-                orderLV.Items.Add(lvItem);
+                if (ord.Local == Local.Kitchen && local || ord.Local == Local.Bar && !local)
+                {
+                    ListViewItem lvItem = new ListViewItem(new string[] { ord.Id.ToString(), ord.Description, ord.getStateString(), ord.TableId.ToString(), ord.Quantity.ToString(), ord.Price.ToString() });
+                    orderLV.Items.Add(lvItem);
+                }
             }
         }
 

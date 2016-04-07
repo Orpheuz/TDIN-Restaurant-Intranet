@@ -22,6 +22,7 @@ namespace Register
             ordersS = (OrderSingleton)Activator.GetObject(typeof(OrderSingleton), "tcp://localhost:9000/Register/ListServer");
             ordersS.DeserializeOrders();
             orders = ordersS.GetListOfOrders();
+            ordersS.UpdateOrderID();
             evRepeater = new AlterEventRepeater();
             evRepeater.alterEvent += new AlterDelegate(DoAlterations);
             ordersS.alterEvent += new AlterDelegate(evRepeater.Repeater);
@@ -54,7 +55,7 @@ namespace Register
         {
             foreach (Order ord in orders)
             {
-                if (ord.PaymentDone && ord.Date.Day == DateTime.Now.Day && ord.Date.Month == DateTime.Now.Month && ord.Date.Year == DateTime.Now.Year)
+                if (ord.Date.Day == metroDateTime1.Value.Day && ord.Date.Month == metroDateTime1.Value.Month && ord.Date.Year == metroDateTime1.Value.Year)
                 {
                     ListViewItem lvItem = new ListViewItem(new string[] { ord.Id.ToString(), ord.Description, ord.getStateString(), ord.TableId.ToString(), ord.Quantity.ToString(), ord.Price.ToString(), ord.Local.ToString() });
                     orderLV.Items.Add(lvItem);
@@ -186,9 +187,38 @@ namespace Register
         private void Register_FormClosed(object sender, FormClosedEventArgs e)
         {
             ordersS.SerializeOrders();
-            Console.ReadLine();
             ordersS.alterEvent -= new AlterDelegate(evRepeater.Repeater);
             evRepeater.alterEvent -= new AlterDelegate(DoAlterations);
+        }
+
+        private void metroDateTime1_ValueChanged(object sender, EventArgs e)
+        {
+            ArrayList newList = ordersS.GetListFromDate(metroDateTime1.Value);
+            bool kitchenChk = checkboxKitchen.Checked;
+            bool barChk = checkboxBar.Checked;
+
+            orderLV.Items.Clear();
+
+            foreach (Order ord in newList)
+            {
+                if (ord.Local == Local.Bar && barChk || ord.Local == Local.Kitchen && kitchenChk)
+                    orderLV.Items.Add(new ListViewItem(new string[] { ord.Id.ToString(), ord.Description, ord.getStateString(), ord.TableId.ToString(), ord.Quantity.ToString(), ord.Price.ToString() }));
+            }
+        }
+
+        private void checkbox_CheckedChanged(object sender, EventArgs e)
+        {
+            ArrayList newList = ordersS.GetListFromDate(metroDateTime1.Value);
+            bool kitchenChk = checkboxKitchen.Checked;
+            bool barChk = checkboxBar.Checked;
+
+            orderLV.Items.Clear();
+
+            foreach (Order ord in newList)
+            {
+                if (ord.Local == Local.Bar && barChk || ord.Local == Local.Kitchen && kitchenChk)
+                    orderLV.Items.Add(new ListViewItem(new string[] { ord.Id.ToString(), ord.Description, ord.getStateString(), ord.TableId.ToString(), ord.Quantity.ToString(), ord.Price.ToString() }));
+            }
         }
     }
 }

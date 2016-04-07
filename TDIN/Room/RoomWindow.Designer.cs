@@ -57,7 +57,6 @@
             this.tableLabel = new MetroFramework.Controls.MetroLabel();
             this.descriptionLabel = new MetroFramework.Controls.MetroLabel();
             this.metroTabControl1 = new MetroFramework.Controls.MetroTabControl();
-            this.metroButton1 = new MetroFramework.Controls.MetroButton();
             this.metroTabPage3.SuspendLayout();
             this.metroTabPage4.SuspendLayout();
             this.metroTabPage2.SuspendLayout();
@@ -288,7 +287,6 @@
             // 
             // metroTabPage2
             // 
-            this.metroTabPage2.Controls.Add(this.metroButton1);
             this.metroTabPage2.Controls.Add(this.quantityUpDown);
             this.metroTabPage2.Controls.Add(this.tableComboBox);
             this.metroTabPage2.Controls.Add(this.descriptionComboBox);
@@ -405,16 +403,6 @@
             this.metroTabControl1.TabIndex = 6;
             this.metroTabControl1.UseSelectable = true;
             // 
-            // metroButton1
-            // 
-            this.metroButton1.Location = new System.Drawing.Point(174, 354);
-            this.metroButton1.Name = "metroButton1";
-            this.metroButton1.Size = new System.Drawing.Size(75, 23);
-            this.metroButton1.TabIndex = 21;
-            this.metroButton1.Text = "metroButton1";
-            this.metroButton1.UseSelectable = true;
-            this.metroButton1.Click += new System.EventHandler(this.metroButton1_Click);
-            // 
             // RoomWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -466,6 +454,5 @@
         private MetroFramework.Controls.MetroTile table3;
         private MetroFramework.Controls.MetroTile table2;
         private MetroFramework.Controls.MetroTile table1;
-        private MetroFramework.Controls.MetroButton metroButton1;
     }
 }

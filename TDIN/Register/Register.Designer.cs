@@ -50,8 +50,8 @@
             this.Table = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Quantity = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Price = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.metroDateTime1 = new MetroFramework.Controls.MetroDateTime();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.metroDateTime1 = new MetroFramework.Controls.MetroDateTime();
             this.metroTabControl1.SuspendLayout();
             this.metroTabPage1.SuspendLayout();
             this.metroTabPage2.SuspendLayout();
@@ -241,6 +241,7 @@
             this.checkboxBar.TabIndex = 6;
             this.checkboxBar.Text = "Bar";
             this.checkboxBar.UseSelectable = true;
+            this.checkboxBar.CheckedChanged += new System.EventHandler(this.checkbox_CheckedChanged);
             // 
             // checkboxKitchen
             // 
@@ -253,6 +254,7 @@
             this.checkboxKitchen.TabIndex = 5;
             this.checkboxKitchen.Text = "Kitchen";
             this.checkboxKitchen.UseSelectable = true;
+            this.checkboxKitchen.CheckedChanged += new System.EventHandler(this.checkbox_CheckedChanged);
             // 
             // orderLV
             // 
@@ -304,6 +306,10 @@
             this.Price.Text = "Price";
             this.Price.Width = 62;
             // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Local";
+            // 
             // metroDateTime1
             // 
             this.metroDateTime1.Location = new System.Drawing.Point(6, 54);
@@ -311,10 +317,7 @@
             this.metroDateTime1.Name = "metroDateTime1";
             this.metroDateTime1.Size = new System.Drawing.Size(200, 29);
             this.metroDateTime1.TabIndex = 2;
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Text = "Local";
+            this.metroDateTime1.ValueChanged += new System.EventHandler(this.metroDateTime1_ValueChanged);
             // 
             // Register
             // 
@@ -324,12 +327,14 @@
             this.Controls.Add(this.metroTabControl1);
             this.Name = "Register";
             this.Text = "Register";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Register_FormClosed);
+            this.Load += new System.EventHandler(this.Orders_Load);
             this.metroTabControl1.ResumeLayout(false);
             this.metroTabPage1.ResumeLayout(false);
             this.metroTabPage2.ResumeLayout(false);
             this.metroTabPage2.PerformLayout();
             this.ResumeLayout(false);
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Register_FormClosed);
+
         }
 
         #endregion
