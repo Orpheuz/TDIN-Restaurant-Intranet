@@ -71,7 +71,7 @@ namespace Register
                 MetroMessageBox.Show(this, "Chose another table", "Table has no orders", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            MetroForm tableInf = new TableInfo(temp, 1, false);
+            MetroForm tableInf = new TableInfo(temp, 1, true);
         }
 
         private void table1_Click(object sender, EventArgs e)
