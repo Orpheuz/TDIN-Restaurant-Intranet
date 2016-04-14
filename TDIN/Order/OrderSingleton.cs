@@ -17,12 +17,11 @@ public class OrderSingleton : MarshalByRefObject, OrderInterface
 
     public OrderSingleton()
     {
-        Console.WriteLine("Constructor called.");
         orderList = new ArrayList();
         tableList = new ArrayList();
         for (uint i = 0; i < 10; i++)
         {
-            Table table = new Table(i);
+            Table table = new Table(i + 1);
             tableList.Add(table);
         }
     }
@@ -34,13 +33,11 @@ public class OrderSingleton : MarshalByRefObject, OrderInterface
 
     public ArrayList GetListOfOrders()
     {
-        Console.WriteLine("GetListOfOrders() called.");
         return orderList;
     }
 
     public ArrayList GetListOfTables()
     {
-        Console.WriteLine("GetListOfTables() called.");
         return tableList;
     }
 
@@ -56,7 +53,7 @@ public class OrderSingleton : MarshalByRefObject, OrderInterface
         if (orderList.Count == 0)
             return;
 
-        foreach(Order ord in orderList)
+        foreach (Order ord in orderList)
         {
             if (ord.Id > max)
                 max = ord.Id;
@@ -115,7 +112,7 @@ public class OrderSingleton : MarshalByRefObject, OrderInterface
         Order tempOrder = null;
         ArrayList orders = new ArrayList();
 
-        foreach(Order order in orderList)
+        foreach (Order order in orderList)
         {
             if (order.TableId == tableID && !order.PaymentDone)
             {
@@ -123,13 +120,19 @@ public class OrderSingleton : MarshalByRefObject, OrderInterface
                 tempOrder = order;
             }
         }
+        if (orders.Count == 0)
+            return orders;
 
-        foreach (Table tab in tableList)
+        if (notify)
         {
-            if (tab.Id == tableID)
+            foreach (Table tab in tableList)
             {
-                tab.Availability = false;
+                if (tab.Id == tableID)
+                {
+                    tab.Availability = false;
+                }
             }
+
         }
 
         if (notify && orders.Count != 0)
@@ -154,35 +157,45 @@ public class OrderSingleton : MarshalByRefObject, OrderInterface
             {
                 tab.Availability = true;
             }
-        }       
+        }
     }
 
-    public void SerializeOrders()
+    public void SerializeOrdersAndTables()
     {
         IFormatter formatter = new BinaryFormatter();
         Stream stream = new FileStream("orders.bin", FileMode.Create, FileAccess.ReadWrite, FileShare.None);
         formatter.Serialize(stream, orderList);
+        stream = new FileStream("tables.bin", FileMode.Create, FileAccess.ReadWrite, FileShare.None);
+        formatter.Serialize(stream, tableList);
         stream.Close();
     }
 
-    public void DeserializeOrders()
+    public void DeserializeOrdersAndTables()
     {
         IFormatter formatter = new BinaryFormatter();
-        if(File.Exists("orders.bin"))
+        if (File.Exists("orders.bin"))
         {
             Stream stream = new FileStream("orders.bin", FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite);
             ArrayList obj = (ArrayList)formatter.Deserialize(stream);
             stream.Close();
 
             orderList = obj;
-        } 
+        }
+        if (File.Exists("tables.bin"))
+        {
+            Stream stream = new FileStream("tables.bin", FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite);
+            ArrayList obj = (ArrayList)formatter.Deserialize(stream);
+            stream.Close();
+
+            tableList = obj;
+        }
     }
 
     public ArrayList GetListFromDate(DateTime date)
     {
         ArrayList temp = new ArrayList();
 
-        foreach(Order ord in orderList)
+        foreach (Order ord in orderList)
         {
             if (ord.Date.Day == date.Day && ord.Date.Month == date.Month && ord.Date.Year == date.Year)
                 temp.Add(ord);
@@ -204,12 +217,10 @@ public class OrderSingleton : MarshalByRefObject, OrderInterface
                     try
                     {
                         handler(op, order);
-                        Console.WriteLine("Invoking event handler");
                     }
                     catch (Exception)
                     {
                         alterEvent -= handler;
-                        Console.WriteLine("Exception: Removed an event handler");
                     }
                 }).Start();
             }

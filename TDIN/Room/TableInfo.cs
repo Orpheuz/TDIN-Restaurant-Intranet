@@ -1,14 +1,6 @@
 ﻿using MetroFramework.Forms;
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace Room
 {
@@ -27,7 +19,7 @@ namespace Room
             uint price = 0;
             foreach(Order order in orders)
             {
-                metroLabel1.Text += "\n" + order.Description + " - " + order.Price + "eur - " + order.Quantity + " portions";
+                metroLabel1.Text += "\n" + order.Description + " - " + order.Price + "euros - " + order.Quantity + " portions";
                 price += order.Price * order.Quantity;
             }
 

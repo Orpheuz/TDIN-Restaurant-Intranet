@@ -292,11 +292,6 @@ namespace Room
             listServer.alterEvent -= new AlterDelegate(evRepeater.Repeater);
             evRepeater.alterEvent -= new AlterDelegate(DoAlterations);
         }
-
-        private void metroButton1_Click(object sender, EventArgs e)
-        {
-            listServer.SerializeOrders();
-        }
     }
 
     class RemoteNew

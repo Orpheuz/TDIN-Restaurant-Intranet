@@ -18,7 +18,7 @@ namespace Register
             InitializeComponent();
             buildInvoice(orders);
             this.Show();
-            this.Text = "Orders from Table " + tableID.ToString();
+            this.Text = "Invoice from Table " + tableID.ToString();
 
             ordersList = (OrderSingleton)Activator.GetObject(typeof(OrderSingleton), "tcp://localhost:9000/Register/ListServer");
         }

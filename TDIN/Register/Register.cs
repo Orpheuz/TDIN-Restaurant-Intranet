@@ -20,7 +20,7 @@ namespace Register
             RemotingConfiguration.Configure("Register.exe.config", false);
             InitializeComponent();
             ordersS = (OrderSingleton)Activator.GetObject(typeof(OrderSingleton), "tcp://localhost:9000/Register/ListServer");
-            ordersS.DeserializeOrders();
+            ordersS.DeserializeOrdersAndTables();
             orders = ordersS.GetListOfOrders();
             ordersS.UpdateOrderID();
             evRepeater = new AlterEventRepeater();
@@ -186,7 +186,7 @@ namespace Register
 
         private void Register_FormClosed(object sender, FormClosedEventArgs e)
         {
-            ordersS.SerializeOrders();
+            ordersS.SerializeOrdersAndTables();
             ordersS.alterEvent -= new AlterDelegate(evRepeater.Repeater);
             evRepeater.alterEvent -= new AlterDelegate(DoAlterations);
         }

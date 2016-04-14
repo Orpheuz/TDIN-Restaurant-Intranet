@@ -226,8 +226,8 @@ public interface OrderInterface
     void AddOrder(Order order);
     bool ChangeState(bool fromRoom, uint id);
     ArrayList ConsultTable(uint tableID, bool notify);
-    void SerializeOrders();
-    void DeserializeOrders();
+    void SerializeOrdersAndTables();
+    void DeserializeOrdersAndTables();
     ArrayList GetListFromDate(DateTime date);
 }
 
